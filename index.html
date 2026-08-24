@@ -77,6 +77,20 @@ body{
 .fila.clic em::after{content:' \2192';color:var(--azul);opacity:0;font-weight:800}
 .fila.clic:hover em::after{opacity:1}
 .nota-barras{font-size:12px;color:var(--gris);margin:10px 0 0;line-height:1.5}
+.muro{border:1.5px solid var(--linea);border-radius:16px;padding:22px 20px;margin-top:22px}
+.muro h4{font-size:19px;line-height:1.25;margin:0 0 8px;text-align:center}
+.muro .ayuda{margin:0 auto 20px;text-align:center;max-width:38ch;text-wrap:balance}
+.muro .formu{margin-top:0}
+.edad-caja{max-width:220px}
+.sw{display:inline-flex;align-items:center;gap:6px;margin-left:12px;font-size:11px;
+    font-weight:700;letter-spacing:0;text-transform:none;color:var(--gris);cursor:pointer}
+.sw input{accent-color:var(--azul);cursor:pointer}
+.tablita tr.fclic{cursor:pointer}
+.tablita tr.fclic:hover td{color:var(--azul)}
+.tablita tr.ruido td{color:var(--gris);font-style:italic}
+.tag-f{display:inline-block;padding:2px 7px;border-radius:20px;background:#EEF2FF;
+    color:var(--azul);font-size:11px;font-weight:700;white-space:nowrap}
+.tag-f.gris{background:#F3F4F6;color:var(--gris)}
 .segcaja{margin:22px 0 -6px}
 .segchip{
   display:inline-flex;align-items:center;gap:9px;background:var(--negro);color:var(--blanco);
@@ -443,8 +457,8 @@ h1 em{font-style:normal;color:var(--azul);}
 }
 
 /* ---------- preguntas ---------- */
-#p-1,#p-2,#p-3,#p-4,#p-5,#p-datos,#p-menor{text-align:center}
-#p-1 .ayuda,#p-2 .ayuda,#p-3 .ayuda,#p-4 .ayuda,#p-5 .ayuda,#p-datos .ayuda{
+#p-1,#p-2,#p-3,#p-4,#p-5,#p-menor{text-align:center}
+#p-1 .ayuda,#p-2 .ayuda,#p-3 .ayuda,#p-4 .ayuda,#p-5 .ayuda{
   margin-left:auto;margin-right:auto;
 }
 #p-resultado{text-align:center}
@@ -576,7 +590,7 @@ footer a{color:var(--gris)}
   #p-hero .alumnos{margin-top:44px}
 
   /* preguntas */
-  #p-1,#p-2,#p-3,#p-4,#p-5,#p-datos,#p-menor{max-width:800px;margin-left:auto;margin-right:auto}
+  #p-1,#p-2,#p-3,#p-4,#p-5,#p-menor{max-width:800px;margin-left:auto;margin-right:auto}
   .pantalla h2{font-size:clamp(30px,3.6vw,40px)}
   .ayuda{font-size:16.5px;max-width:52ch}
   .opciones{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -647,11 +661,18 @@ footer a{color:var(--gris)}
 
       <div class="hoja on" id="hoja-metricas">
       <p class="nota-barras" style="margin-top:18px">Pulsa cualquier fila que tenga leads detrás para verlos en la pestaña <b>Leads</b>.</p>
-      <h5>Embudo</h5>
+      <h5>Embudo<label class="sw"><input type="checkbox" id="panel-ruido" checked>
+        quitar trafico no identificado</label></h5>
       <div class="kpis" id="panel-kpis"></div>
 
       <h5>Paso a paso</h5>
       <div class="barras" id="panel-embudo"></div>
+
+      <h5>Fuente del trafico</h5>
+      <div class="tabla-caja"><table class="tablita" id="panel-fuentes"></table></div>
+      <p class="nota-barras">Pulsa una fila para ver sus leads. «Resto sin identificar» son
+      visitas sin cuenta de ManyChat ni etiqueta <code>?o=</code>: en su mayoria previews de
+      enlace y rastreadores, no personas.</p>
 
       <h5>Edad</h5>
       <div class="barras" id="panel-edad"></div>
@@ -725,7 +746,7 @@ footer a{color:var(--gris)}
     <p class="eyebrow">Diagnóstico gratuito</p>
     <h1>Recibe gratis tu plan para conseguir tu primer cliente... <em>sin dejar tu trabajo</em></h1>
     <p class="bajada">5 preguntas, 2 minutos. El plan se calcula sobre las horas que tienes de verdad, no sobre las que te gustaría tener.</p>
-    <button class="cta" data-ir="datos">Empezar el diagnóstico</button>
+    <button class="cta" data-ir="1">Empezar el diagnóstico</button>
 
     <div class="datos" id="datos"></div>
 
@@ -754,7 +775,7 @@ footer a{color:var(--gris)}
       <button class="opcion" data-q="1" data-v="estudio"><span class="marca-op"></span>Estudio</button>
       <button class="opcion" data-q="1" data-v="nada"><span class="marca-op"></span>Ahora mismo nada</button>
     </div>
-    <button class="atras" data-atras="datos">← Atrás</button>
+    <button class="atras" data-atras="hero">← Atrás</button>
   </section>
 
   <!-- P2 -->
@@ -813,76 +834,26 @@ footer a{color:var(--gris)}
   </section>
 
   <!-- DATOS -->
-  <section class="pantalla" id="p-datos">
-    <p class="contador">Antes de empezar</p>
-    <h2>¿A dónde te enviamos el diagnóstico?</h2>
-    <p class="ayuda">Déjanos tus datos y te lo mandamos por WhatsApp y correo en cuanto lo termines, sin que tengas que esperar.</p>
-
-    <div class="formu">
-      <div class="campo" id="c-nombre">
-        <label for="f-nombre">Tu nombre</label>
-        <input type="text" id="f-nombre" autocomplete="given-name" placeholder="Cómo te llamamos">
-        <span class="error">Escribe tu nombre.</span>
-      </div>
-
-      <div class="campo" id="c-email">
-        <label for="f-email">Tu correo</label>
-        <input type="email" id="f-email" autocomplete="email" placeholder="tucorreo@ejemplo.com">
-        <span class="error">Revisa el correo, parece incompleto.</span>
-      </div>
-
-      <div class="campo" id="c-edad">
-        <label for="f-edad">Tu edad</label>
-        <input type="number" id="f-edad" inputmode="numeric" min="14" max="99" placeholder="Ej. 27">
-        <span class="error">Pon una edad válida.</span>
-      </div>
-
-      <div class="campo" id="c-tel">
-        <label for="f-tel">Tu WhatsApp</label>
-        <div class="tel">
-          <select id="f-pref" aria-label="Prefijo del país">
-            <option value="+34">🇪🇸 +34</option>
-            <option value="+52">🇲🇽 +52</option>
-            <option value="+57">🇨🇴 +57</option>
-            <option value="+54">🇦🇷 +54</option>
-            <option value="+56">🇨🇱 +56</option>
-            <option value="+51">🇵🇪 +51</option>
-            <option value="+593">🇪🇨 +593</option>
-            <option value="+58">🇻🇪 +58</option>
-            <option value="+502">🇬🇹 +502</option>
-            <option value="+598">🇺🇾 +598</option>
-            <option value="+595">🇵🇾 +595</option>
-            <option value="+591">🇧🇴 +591</option>
-            <option value="+506">🇨🇷 +506</option>
-            <option value="+507">🇵🇦 +507</option>
-            <option value="+1">🇺🇸 +1</option>
-            <option value="+351">🇵🇹 +351</option>
-            <option value="otro">Otro</option>
-          </select>
-          <input type="tel" id="f-tel" inputmode="tel" autocomplete="tel" placeholder="600 000 000">
-        </div>
-        <span class="error">Pon un número de teléfono válido.</span>
-      </div>
-
-      <label class="consent" id="c-ok">
-        <input type="checkbox" id="f-ok">
-        <span>Acepto que Lathos me contacte por WhatsApp y correo para enviarme mi diagnóstico y contenido relacionado. Puedo darme de baja cuando quiera.</span>
-      </label>
-
-      <button class="cta" id="btn-datos">Continuar a las preguntas</button>
-      <p class="aviso-privacidad">Tus datos no se comparten con terceros.</p>
+  <!-- MENOR -->
+  <!-- NO ES TU MOMENTO -->
+  <section class="pantalla" id="p-nomomento">
+    <div class="aviso">
+      <h3>Ahora mismo no es tu momento. Y preferimos decírtelo.</h3>
+      <p>Por lo que nos has contado, meterte hoy en un programa de pago sería empezar por el sitio equivocado. No porque no valgas para esto: porque hay un orden, y el primer paso no es formarte, es llegar a tener un margen mínimo con el que moverte.</p>
+      <p>Preferimos decírtelo ahora y no venderte algo que no te va a servir todavía.</p>
     </div>
 
-    <button class="atras" data-atras="hero">← Atrás</button>
+    <a class="cta azul" id="btn-video" href="#" target="_blank" rel="noopener">Ver la formación gratuita</a>
+    <p class="pie-cta">Es gratis y no hay que dejar ningún dato. Cuando tu situación cambie, vuelve por aquí y lo retomamos.</p>
   </section>
 
-  <!-- MENOR -->
   <section class="pantalla" id="p-menor">
     <div class="aviso">
-      <h3>Nos vemos cuando cumplas los 18.</h3>
-      <p>Nuestros programas son para mayores de edad, así que de momento no podemos prepararte un plan. Mientras tanto puedes seguirnos: subimos contenido gratuito cada semana sobre estas tres habilidades.</p>
+      <h3>Aún no podemos prepararte un plan.</h3>
+      <p>Por tu edad, aquí se acaba el diagnóstico. No hemos guardado ninguno de tus datos.</p>
+      <p>Si tus padres o tutores quieren informarse, pueden hacerlo en <b>lathos.es</b>.</p>
     </div>
-    <p class="nota">Si tienes dudas, tus padres o tutores pueden escribirnos por Instagram.</p>
+    <p class="nota">Vuelve a pasarte más adelante y lo retomamos desde aquí.</p>
   </section>
 
   <!-- RESULTADO -->
@@ -894,14 +865,78 @@ footer a{color:var(--gris)}
       <div class="franja" id="r-horas"></div>
     </div>
 
-    <div class="bloque">
-      <h4>Tus primeros 30 días</h4>
-      <ul class="lista" id="r-pasos"></ul>
-      <p class="nota" id="r-nota"></p>
+    <div class="muro" id="r-muro">
+      <h4>Tu plan de 30 días está listo</h4>
+      <p class="ayuda">Rellena esto y lo abrimos aquí mismo. Te lo mandamos también al DM para que no lo pierdas.</p>
+
+      <div class="formu">
+        <div class="campo" id="c-edad">
+          <label for="f-edad">Tu edad</label>
+          <input type="number" id="f-edad" inputmode="numeric" min="8" max="99"
+                 autocomplete="off" placeholder="Ej. 27">
+          <span class="error">Pon una edad válida.</span>
+        </div>
+
+        <div class="campo" id="c-nombre">
+          <label for="f-nombre">Tu nombre</label>
+          <input type="text" id="f-nombre" autocomplete="given-name" placeholder="Cómo te llamamos">
+          <span class="error">Escribe tu nombre.</span>
+        </div>
+
+        <div class="campo" id="c-ig">
+          <label for="f-ig">Tu Instagram</label>
+          <input type="text" id="f-ig" autocomplete="off" autocapitalize="off"
+                 spellcheck="false" placeholder="@tuusuario">
+          <span class="error">Escribe tu usuario de Instagram.</span>
+        </div>
+
+        <div class="campo" id="c-tel">
+          <label for="f-tel">Tu WhatsApp</label>
+          <div class="tel">
+            <select id="f-pref" aria-label="Prefijo del país">
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+51">🇵🇪 +51</option>
+              <option value="+593">🇪🇨 +593</option>
+              <option value="+58">🇻🇪 +58</option>
+              <option value="+502">🇬🇹 +502</option>
+              <option value="+598">🇺🇾 +598</option>
+              <option value="+595">🇵🇾 +595</option>
+              <option value="+591">🇧🇴 +591</option>
+              <option value="+506">🇨🇷 +506</option>
+              <option value="+507">🇵🇦 +507</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+351">🇵🇹 +351</option>
+              <option value="otro">Otro</option>
+            </select>
+            <input type="tel" id="f-tel" inputmode="tel" autocomplete="tel" placeholder="600 000 000">
+          </div>
+          <span class="error">Pon un número de teléfono válido.</span>
+        </div>
+
+        <label class="consent" id="c-ok">
+          <input type="checkbox" id="f-ok">
+          <span>Acepto que Lathos me contacte por WhatsApp para enviarme mi diagnóstico y contenido relacionado. Puedo darme de baja cuando quiera.</span>
+        </label>
+
+        <button class="cta" id="btn-datos">Ver mi plan de 30 días</button>
+        <p class="aviso-privacidad">Tus datos no se comparten con terceros.</p>
+      </div>
     </div>
 
-    <button class="cta azul" id="btn-dm">Recibir mi plan por Instagram</button>
-    <p class="pie-cta">Te lo enviamos al DM. Tardas menos en abrirlo que en leer esto.</p>
+    <div id="r-plan" hidden>
+      <div class="bloque">
+        <h4>Tus primeros 30 días</h4>
+        <ul class="lista" id="r-pasos"></ul>
+        <p class="nota" id="r-nota"></p>
+      </div>
+
+      <button class="cta azul" id="btn-dm">Recibir mi plan por Instagram</button>
+      <p class="pie-cta">Te lo enviamos al DM. Tardas menos en abrirlo que en leer esto.</p>
+    </div>
 
     <section class="alumnos">
       <h4 class="alumnos-tit" id="res-tit">Empezaron por este mismo camino</h4>
@@ -1147,8 +1182,58 @@ footer a{color:var(--gris)}
   })();
 
   // ===== CONFIGURACIÓN =====
-  var CUENTA_IG = 'dollardoradoyt';     // cuenta que recibe el DM
+  var CUENTA_IG = 'dollardoradoyt';     // cuenta por defecto que recibe el DM
   var REF_BASE  = 'plandiag';           // <- debe coincidir con el trigger de ManyChat
+
+  // Cada Instagram tiene su propia pagina de ManyChat, y un flujo solo responde
+  // desde la suya. Mientras el flujo de entrega exista SOLO en Dollardoradoyt hay
+  // que dejar esto en false: si se pone en true sin duplicar el flujo, los leads de
+  // Dollar.Business escriben a un buzon donde no hay nada montado.
+  var DM_POR_CUENTA = false;
+
+  // ---- Reglas de descarte ----------------------------------------------
+  // MODO_DESCARTE decide como se combinan las dos condiciones:
+  //   'Y' -> solo cae quien cumple LAS DOS a la vez (edad Y capital)
+  //   'O' -> cae quien cumpla CUALQUIERA de las dos
+  var MODO_DESCARTE = 'Y';
+
+  // Tramos de edad que NO cualifican. Para cortar en 18 anhadir '16_17'.
+  var EDAD_DESCARTA = ['menos_16'];
+  // Respuestas de la pregunta 3 (capital) que NO cualifican.
+  // Vaciar el array (= []) desactiva el filtro de capital.
+  var CAPITAL_DESCARTA = ['cero', 'menos200'];
+  // Formacion gratuita a la que se redirige al descartado
+  var VIDEO_DESCARTE = 'https://www.youtube.com/watch?v=N9Lr-1CIe4w&t=586s';
+
+  // Enlace directo al contacto en ManyChat desde la ficha del panel.
+  // Patron confirmado sobre una URL real de la cuenta 1144662 (24/08/2026).
+  // {PID} es la cuenta de ManyChat y {SID} el suscriptor.
+  var URL_MANYCHAT = 'https://app.manychat.com/fb{PID}/chat/{SID}';
+
+  function noCualifica(tramo, capital){
+    var porEdad    = EDAD_DESCARTA.indexOf(tramo) !== -1;
+    var porCapital = CAPITAL_DESCARTA.indexOf(capital) !== -1;
+    return MODO_DESCARTE === 'Y' ? (porEdad && porCapital) : (porEdad || porCapital);
+  }
+  // ----------------------------------------------------------------------
+  var CUENTAS = { '1144662':'dollardoradoyt', '4706795':'dollar.business' };
+
+  // pid = la cuenta de Instagram, lo trae ManyChat en el mcp_token de la URL
+  var PID_ORIGEN = (function(){
+    try{
+      var m = /[?&]mcp_token=([^&#.]+)/.exec(location.search);
+      if(!m) return null;
+      var b = m[1].replace(/-/g,'+').replace(/_/g,'/');
+      while(b.length % 4) b += '=';
+      var j = JSON.parse(atob(b));
+      return (j && j.pid) ? String(j.pid) : null;
+    }catch(e){ return null; }
+  })();
+
+  function cuentaDestino(){
+    if(!DM_POR_CUENTA) return CUENTA_IG;
+    return (PID_ORIGEN && CUENTAS[PID_ORIGEN]) ? CUENTAS[PID_ORIGEN] : CUENTA_IG;
+  }
 
   // Cada diagnóstico se guarda en la tabla `diagnosticos` de Supabase.
   var ENDPOINT   = 'https://hseluvpwqjgallfyzori.supabase.co/rest/v1/diagnosticos';
@@ -1214,12 +1299,12 @@ footer a{color:var(--gris)}
     } else if(id === 'resultado'){
       barra.style.width = '100%';
       paso.textContent = 'Tu resultado';
-    } else if(id === 'datos'){
-      barra.style.width = '8%';
-      paso.textContent = 'Tus datos';
     } else if(id === 'hero'){
       barra.style.width = '0';
       paso.innerHTML = '<span id="secreto">Gratis</span> · 2 minutos';
+    } else if(id === 'nomomento' || id === 'menor'){
+      barra.style.width = '100%';
+      paso.textContent = 'Tu resultado';
     } else {
       barra.style.width = '100%';
       paso.textContent = 'Casi está';
@@ -1282,11 +1367,16 @@ footer a{color:var(--gris)}
     dias:'Con días libres completos puedes hacer en dos jornadas lo que a otros les lleva dos semanas. Es tu mayor ventaja.'
   };
 
+  var VERT_ACTUAL = null, CTX_ACTUAL = '';
+
   function pintarResultado(){
     var v = calcular();
     var t = TEXTOS[v];
     var kicker = document.querySelector('#p-resultado .kicker');
-    if(kicker) kicker.textContent = datos.nombre ? ('Tu camino, ' + datos.nombre) : 'Tu camino';
+    if(kicker) kicker.textContent = 'Tu camino';
+    var muro = document.getElementById('r-muro');
+    var plan = document.getElementById('r-plan');
+    if(muro && !datos.nombre){ muro.hidden = false; if(plan) plan.hidden = true; }
     pintarTestimonios(v);
     registrar(v);
     document.getElementById('r-titulo').textContent = t.titulo;
@@ -1304,52 +1394,142 @@ footer a{color:var(--gris)}
     // ref para ManyChat: plandiag-vertical--jornada_horas_freno
     // La parte de delante del '--' es el trigger (uno por vertical);
     // lo de detrás es contexto para personalizar el mensaje.
-    var contexto = [r[1]||'', r[2]||'', r[5]||''].join('_');
-    document.getElementById('btn-dm').setAttribute('data-url',
-      'https://ig.me/m/' + CUENTA_IG + '?ref=' + REF_BASE + '-' + v + '--' + contexto + '--' + CODIGO);
+    // El enlace al DM NO se construye aqui: la edad todavia no esta confirmada.
+    // Se guarda lo necesario y lo monta abrirPlan(), que solo corre para mayores.
+    VERT_ACTUAL = v;
+    CTX_ACTUAL  = [r[1]||'', r[2]||'', r[5]||''].join('_');
+    var btn = document.getElementById('btn-dm');
+    if(btn) btn.removeAttribute('data-url');
 
     ver('resultado');
   }
 
   // ===== FORMULARIO DE DATOS =====
+  // Acepta '@usuario', 'usuario', 'instagram.com/usuario' o la URL completa.
+  // Devuelve el usuario limpio en minusculas, o '' si no hay nada aprovechable.
+  function normalizaIG(v){
+    if(!v) return '';
+    var t = String(v).trim().toLowerCase();
+    t = t.replace(/^https?:\/\//, '').replace(/^www\./, '');
+    t = t.replace(/^instagram\.com\//, '').replace(/^ig\.me\/m\//, '');
+    t = t.split('?')[0].split('/')[0];
+    t = t.replace(/^@+/, '').replace(/[^a-z0-9._]/g, '');
+    if(t.length < 2 || t.length > 30) return '';
+    return t;
+  }
+
   function marcar(id, mal){
     var c = document.getElementById(id);
     if(c) c.classList[mal ? 'add' : 'remove']('mal');
     return !mal;
   }
 
+  // ----- Ultimo toque: el tramo de edad, con las 5 respuestas ya dadas -----
+  // Los menores se cierran aqui: no se guarda su lead, no se calcula vertical
+  // y nunca se construye el enlace al DM, asi que no acaban en Instagram.
+  var FORM_TOCADO = false;
+  var TRAMO = null;
+
+  // La edad se escribe como numero; el tramo se deduce, para que los filtros
+  // y el panel sigan hablando el mismo idioma.
+  function tramoDeEdad(n){
+    if(isNaN(n)) return null;
+    if(n < 16) return 'menos_16';
+    if(n < 18) return '16_17';
+    if(n <= 25) return '18_25';
+    return 'mas_25';
+  }
+
+  // ----- Paso final: edad, nombre y WhatsApp, con el plan al otro lado -----
   document.getElementById('btn-datos').addEventListener('click', function(){
     var nombre = document.getElementById('f-nombre').value.trim();
-    var email  = document.getElementById('f-email').value.trim();
-    var edad   = parseInt(document.getElementById('f-edad').value, 10);
     var pref   = document.getElementById('f-pref').value;
     var tel    = document.getElementById('f-tel').value.replace(/[^0-9]/g,'');
     var ok     = document.getElementById('f-ok').checked;
 
-    var v1 = marcar('c-nombre', nombre.length < 2);
-    var v2 = marcar('c-email', !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email));
-    var v3 = marcar('c-edad', isNaN(edad) || edad < 14 || edad > 99);
-    var v4 = marcar('c-tel', tel.length < 6 || tel.length > 15);
-    var v5 = marcar('c-ok', !ok);
-    if(!(v1 && v2 && v3 && v4 && v5)) return;
+    var ig = normalizaIG(document.getElementById('f-ig').value);
 
-    datos.email    = email;
+    var edad = parseInt(document.getElementById('f-edad').value, 10);
+    TRAMO = tramoDeEdad(edad);
+    var v0 = marcar('c-edad', isNaN(edad) || edad < 8 || edad > 99);
+    var v1 = marcar('c-nombre', nombre.length < 2);
+    var vi = marcar('c-ig', !ig);
+    var v2 = marcar('c-tel', tel.length < 6 || tel.length > 15);
+    var v3 = marcar('c-ok', !ok);
+    if(!(v0 && v1 && vi && v2 && v3)){
+      evento('form_error', {donde:'final',
+        campo: (!v0 ? 'edad' : (!v1 ? 'nombre' : (!vi ? 'instagram' :
+               (!v2 ? 'telefono' : 'consentimiento'))))});
+      return;
+    }
+    datos.instagram = ig;
+
+    datos.edad       = edad;
+    datos.edad_tramo = TRAMO;
+
+    // Bifurcacion. El descartado se corta AQUI, antes de guardarLead(): lo que
+    // ha escrito se queda en su navegador y no llega a salir del movil.
+    if(noCualifica(TRAMO, r[3])){
+      var porEdad = EDAD_DESCARTA.indexOf(TRAMO) !== -1;
+      if(porEdad) evento('menor_edad', {tramo: TRAMO});
+      evento('no_cualifica', {
+        motivo: MODO_DESCARTE === 'Y' ? 'edad_y_capital' : (porEdad ? 'edad' : 'sin_capital'),
+        tramo:  TRAMO,
+        valor:  r[3] || ''
+      });
+      datos.nombre = ''; datos.telefono = ''; datos.instagram = ''; datos.edad = null;
+      var bdm = document.getElementById('btn-dm');
+      if(bdm) bdm.removeAttribute('data-url');
+      // Menor sin capital -> pantalla de "no es tu momento" con la formacion gratis
+      if(porEdad && MODO_DESCARTE === 'O') ver('menor'); else irANoMomento();
+      return;
+    }
+
     datos.nombre   = nombre;
-    datos.edad     = edad;
     datos.telefono = (pref === 'otro' ? '' : pref) + tel;
 
-    // Menores de edad: no se les prepara plan
     guardarLead();
-    evento('optin', {edad: edad, tramo: edad < 17 ? 'menos_17' : (edad <= 25 ? '17_25' : 'mas_25')});
-
-    if(edad < 18){ evento('menor_edad', {edad: edad}); ver('menor'); return; }
-    ver('1');
+    evento('optin', {tramo: TRAMO});
+    abrirPlan();
   });
 
-  // limpiar el aviso en cuanto corrigen
-  ['f-nombre','f-email','f-edad','f-tel'].forEach(function(id){
+  function irANoMomento(){
+    var a = document.getElementById('btn-video');
+    if(a) a.setAttribute('href', VIDEO_DESCARTE);
+    var btn = document.getElementById('btn-dm');
+    if(btn) btn.removeAttribute('data-url');   // por si acaso: sin salida al DM
+    ver('nomomento');
+  }
+
+  document.getElementById('btn-video').addEventListener('click', function(){
+    evento('clic_video_descarte');
+  });
+
+  function abrirPlan(){
+    // Solo se llega aqui con TRAMO validado y distinto de 'menos_18'
+    var btn = document.getElementById('btn-dm');
+    if(btn && VERT_ACTUAL && datos.edad_tramo && datos.edad_tramo !== 'menos_18'){
+      btn.setAttribute('data-url',
+        'https://ig.me/m/' + cuentaDestino() + '?ref=' + REF_BASE + '-' + VERT_ACTUAL +
+        '--' + CTX_ACTUAL + '--' + CODIGO);
+    }
+    var muro = document.getElementById('r-muro');
+    var plan = document.getElementById('r-plan');
+    if(muro) muro.hidden = true;
+    if(plan) plan.hidden = false;
+    var kicker = document.querySelector('#p-resultado .kicker');
+    if(kicker) kicker.textContent = datos.nombre ? ('Tu camino, ' + datos.nombre) : 'Tu camino';
+    if(plan) plan.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // limpiar el aviso en cuanto corrigen, y avisar de que han empezado a rellenar
+  ['f-edad','f-nombre','f-ig','f-tel'].forEach(function(id){
     var el = document.getElementById(id);
-    el.addEventListener('input', function(){ el.closest('.campo').classList.remove('mal'); });
+    if(!el) return;
+    el.addEventListener('input', function(){
+      el.closest('.campo').classList.remove('mal');
+      if(!FORM_TOCADO){ FORM_TOCADO = true; evento('form_inicio'); }
+    });
   });
   document.getElementById('f-ok').addEventListener('change', function(){
     document.getElementById('c-ok').classList.remove('mal');
@@ -1363,10 +1543,11 @@ footer a{color:var(--gris)}
         method:'POST', headers:cabeceras(), keepalive:true,
         body: JSON.stringify({
           sesion:   SESION,
-          nombre:   datos.nombre || '',
-          email:    datos.email || '',
-          edad:     datos.edad || null,
-          telefono: datos.telefono || '',
+          nombre:      datos.nombre || '',
+          edad:        datos.edad || null,
+          edad_tramo:  datos.edad_tramo || null,
+          instagram:   datos.instagram || '',
+          telefono:    datos.telefono || '',
           origen:   location.search || ''
         })
       }).catch(function(){});
@@ -1391,8 +1572,11 @@ footer a{color:var(--gris)}
 
     var ETIQUETAS = {
       visita:'Entran en la página', clic_empezar:'Pulsan "Empezar"',
-      optin:'Completan sus datos', pregunta:'Responden preguntas',
+      optin:'Dejan sus datos', pregunta:'Responden preguntas',
       resultado:'Llegan al resultado', pide_dm:'Piden el plan por DM',
+      edad_ok:'Pasan la edad', form_inicio:'Empiezan el formulario',
+      form_error:'Fallo de validación',
+      no_cualifica:'Descartados', clic_video_descarte:'Ven el vídeo de descarte',
       abre_ig:'Abren Instagram',
       menor_edad:'Menores de 18',
       yt_hero:'YouTube (inicio)', yt_final:'YouTube (resultado)',
@@ -1400,6 +1584,8 @@ footer a{color:var(--gris)}
     };
     var PREGUNTAS = ['Su día','Sus horas','Su margen','Lo suyo','Su freno'];
     var VERTICALES = {ventas:'Ventas', ia:'Agencia de IA', ecom:'Ecommerce'};
+    var TRAMOS = {menos_16:'Menos de 16', '16_17':'16 o 17', menos_18:'Menor de 18',
+                  '18_25':'18 a 25', mas_25:'Más de 25'};
     var TITULOS = ['¿A qué le dedica el día?','¿Cuánto tiempo libre tiene?',
                    '¿De cuánto puede disponer?','¿Qué se le da mejor?','¿Qué le ha frenado?'];
     var VALORES = {
@@ -1448,19 +1634,62 @@ footer a{color:var(--gris)}
     }
 
     var LEADS = [];
+    var DATOS = null;
+
+    function pintarFuentes(fs){
+      var t = document.getElementById('panel-fuentes');
+      t.innerHTML = '<tr><th>Fuente</th><th>Visitas</th><th>Leads</th><th>Piden DM</th><th>% empezar</th><th>% global</th></tr>';
+      if(!fs || !fs.length){
+        t.innerHTML += '<tr><td colspan="6" style="color:var(--gris)">Sin datos todavia.</td></tr>';
+        return;
+      }
+      fs.forEach(function(f){
+        var tr = document.createElement('tr');
+        if(f.es_ruido) tr.className = 'ruido';
+        [f.fuente, f.visitas, f.datos, f.pide_dm,
+         (f.pct_empezar === null ? '—' : f.pct_empezar + '%'),
+         (f.pct_global  === null ? '—' : f.pct_global  + '%')].forEach(function(c, i){
+          var td = document.createElement('td');
+          if(i === 0){
+            var sp = document.createElement('span');
+            sp.className = 'tag-f' + (f.es_ruido ? ' gris' : '');
+            sp.textContent = c;
+            td.appendChild(sp);
+          } else {
+            td.textContent = (c === null || c === undefined) ? '—' : c;
+          }
+          tr.appendChild(td);
+        });
+        if(f.datos > 0){
+          tr.classList.add('fclic');
+          tr.title = 'Ver estos leads';
+          tr.addEventListener('click', function(){
+            verSegmento({t:'fuente', v:f.fuente, e:f.fuente});
+          });
+        }
+        t.appendChild(tr);
+      });
+    }
 
     function pintar(d){
+      DATOS = d;
       LEADS = d.leads || [];
+      var sinRuido = document.getElementById('panel-ruido');
+      var limpio = !sinRuido || sinRuido.checked;
+      var fuente = (limpio && d.eventos_reales && d.eventos_reales.length)
+                   ? d.eventos_reales : d.eventos;
       var ev = {};
-      (d.eventos || []).forEach(function(e){ ev[e.evento] = e.sesiones; });
+      (fuente || []).forEach(function(e){ ev[e.evento] = e.sesiones; });
       var visitas = ev.visita || 0;
+
+      pintarFuentes(d.fuentes || []);
 
       // KPIs
       var kpis = [
         ['Visitas', visitas, null],
         ['Pulsan empezar', ev.clic_empezar || 0, pct(ev.clic_empezar || 0, visitas)],
-        ['Pasan el optin', ev.optin || 0, pct(ev.optin || 0, visitas)],
         ['Llegan al resultado', ev.resultado || 0, pct(ev.resultado || 0, visitas)],
+        ['Dejan sus datos', ev.optin || 0, pct(ev.optin || 0, visitas)],
         ['Piden el plan por DM', ev.pide_dm || 0, pct(ev.pide_dm || 0, visitas)],
         ['Leads guardados', LEADS.length, null]
       ];
@@ -1478,23 +1707,29 @@ footer a{color:var(--gris)}
       barras(document.getElementById('panel-embudo'), [
         [ETIQUETAS.visita, visitas],
         [ETIQUETAS.clic_empezar, ev.clic_empezar || 0],
-        [ETIQUETAS.optin, ev.optin || 0, {t:'paso', v:'optin'}],
+        [ETIQUETAS.edad_ok, ev.edad_ok || 0],
         [ETIQUETAS.resultado, ev.resultado || 0, {t:'paso', v:'resultado'}],
+        [ETIQUETAS.optin, ev.optin || 0, {t:'paso', v:'optin'}],
         [ETIQUETAS.pide_dm, ev.pide_dm || 0, {t:'paso', v:'pide_dm'}]
       ], visitas);
 
       // edad
-      var tramos = {menos_17:0, '17_25':0, mas_25:0};
+      var tramos = {menos_16:0, '16_17':0, menos_18:0, '18_25':0, mas_25:0};
       LEADS.forEach(function(l){
-        if(l.edad === null || l.edad === undefined) return;
-        if(l.edad < 17) tramos.menos_17++;
-        else if(l.edad <= 25) tramos['17_25']++;
-        else tramos.mas_25++;
+        var t = l.edad_tramo;
+        if(!t && (l.edad || l.edad === 0)){
+          t = l.edad < 16 ? 'menos_16' : (l.edad < 18 ? '16_17' :
+              (l.edad <= 25 ? '18_25' : 'mas_25'));
+        }
+        if(tramos[t] !== undefined) tramos[t]++;
       });
-      var totalEdad = tramos.menos_17 + tramos['17_25'] + tramos.mas_25;
+      var totalEdad = tramos.menos_16 + tramos['16_17'] + tramos.menos_18 +
+                      tramos['18_25'] + tramos.mas_25;
       barras(document.getElementById('panel-edad'), [
-        ['Menos de 17', tramos.menos_17, {t:'edad', v:'menos_17'}],
-        ['De 17 a 25', tramos['17_25'], {t:'edad', v:'17_25'}],
+        ['Menos de 16', tramos.menos_16, {t:'edad', v:'menos_16'}],
+        ['16 o 17 · MENOR', tramos['16_17'], {t:'edad', v:'16_17'}],
+        ['Menos de 18 (histórico)', tramos.menos_18, {t:'edad', v:'menos_18'}],
+        ['De 18 a 25', tramos['18_25'], {t:'edad', v:'18_25'}],
         ['Más de 25', tramos.mas_25, {t:'edad', v:'mas_25'}]
       ], totalEdad);
 
@@ -1536,6 +1771,11 @@ footer a{color:var(--gris)}
       pintarLeads();
     }
 
+    (function(){
+      var sw = document.getElementById('panel-ruido');
+      if(sw) sw.addEventListener('change', function(){ if(DATOS) pintar(DATOS); });
+    })();
+
     // En qué punto se quedó cada lead
     function estado(l){
       var hechas = l.respuestas ? Object.keys(l.respuestas).length : 0;
@@ -1560,12 +1800,14 @@ footer a{color:var(--gris)}
         return true;                       // optin = todo lead guardado
       }
       if(s.t === 'edad'){
-        if(l.edad === null || l.edad === undefined) return false;
-        if(s.v === 'menos_17') return l.edad < 17;
-        if(s.v === '17_25')    return l.edad >= 17 && l.edad <= 25;
-        return l.edad > 25;
+        var t = l.edad_tramo;
+        if(!t && (l.edad || l.edad === 0)){
+          t = l.edad < 18 ? 'menos_18' : (l.edad <= 25 ? '18_25' : 'mas_25');
+        }
+        return t === s.v;
       }
       if(s.t === 'vert') return l.vertical === s.v;
+      if(s.t === 'fuente') return (l.fuente || 'Sin clasificar') === s.v;
       if(s.t === 'preg') return !!(l.respuestas && String(l.respuestas[s.n]) === String(s.v));
       return true;
     }
@@ -1579,6 +1821,7 @@ footer a{color:var(--gris)}
       if(s.t === 'preg') return 'Pregunta ' + s.n + ' · ' + s.p + ': ' + leible(s.v);
       if(s.t === 'edad') return 'Edad: ' + s.e;
       if(s.t === 'vert') return 'Vertical: ' + s.e;
+      if(s.t === 'fuente') return 'Fuente: ' + s.e;
       return s.e;
     }
 
@@ -1630,9 +1873,9 @@ footer a{color:var(--gris)}
 
       var lista = filtrados();
       var t = document.getElementById('panel-tabla');
-      t.innerHTML = '<tr><th>Fecha</th><th>Nombre</th><th>Edad</th><th>WhatsApp</th><th>Vertical</th><th>Estado</th><th>Asignado</th></tr>';
+      t.innerHTML = '<tr><th>Fecha</th><th>Nombre</th><th>Instagram</th><th>WhatsApp</th><th>Vertical</th><th>Fuente</th><th>Estado</th><th>Asignado</th></tr>';
       if(!lista.length){
-        t.innerHTML += '<tr><td colspan="7" style="color:var(--gris)">Ningún lead ' +
+        t.innerHTML += '<tr><td colspan="8" style="color:var(--gris)">Ningún lead ' +
                        (SEG ? 'en este segmento con el filtro elegido.' : 'en este filtro.') + '</td></tr>';
         return;
       }
@@ -1641,8 +1884,9 @@ footer a{color:var(--gris)}
         tr.setAttribute('data-id', l.id);
         [new Date(l.creado_en).toLocaleDateString('es-ES') + ' ' +
            new Date(l.creado_en).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}),
-         l.nombre, l.edad, l.telefono,
-         VERTICALES[l.vertical] || '—'].forEach(function(c){
+         l.nombre, (l.instagram ? '@' + l.instagram : '—'), l.telefono,
+         VERTICALES[l.vertical] || '—',
+         l.fuente || '—'].forEach(function(c){
           var td = document.createElement('td');
           td.textContent = (c === null || c === undefined || c === '') ? '—' : c;
           tr.appendChild(td);
@@ -1676,7 +1920,7 @@ footer a{color:var(--gris)}
 
       document.getElementById('fi-nombre').textContent = l.nombre || '—';
       document.getElementById('fi-sub').textContent =
-        (l.edad ? l.edad + ' años · ' : '') +
+        (l.edad ? l.edad + ' años · ' : (l.edad_tramo ? TRAMOS[l.edad_tramo] + ' · ' : '')) +
         new Date(l.creado_en).toLocaleString('es-ES');
 
       var pares = document.getElementById('fi-pares');
@@ -1689,12 +1933,40 @@ footer a{color:var(--gris)}
         d.querySelector('b').textContent = (v === null || v === undefined || v === '') ? '—' : v;
         pares.appendChild(d);
       }
+      function parLink(k, texto, url){
+        var d = document.createElement('div');
+        d.className = 'par';
+        var sp = document.createElement('span'); sp.textContent = k;
+        var b  = document.createElement('b');
+        if(url){
+          var a = document.createElement('a');
+          a.href = url; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = texto;
+          a.style.color = 'var(--azul)';
+          a.style.textDecoration = 'underline';
+          b.appendChild(a);
+        } else {
+          b.textContent = texto || '—';
+        }
+        d.appendChild(sp); d.appendChild(b);
+        pares.appendChild(d);
+      }
+
+      parLink('Instagram',
+        l.instagram ? '@' + l.instagram : '—',
+        l.instagram ? 'https://instagram.com/' + l.instagram : null);
       par('WhatsApp', l.telefono);
       par('Correo', l.email);
       par('Vertical', VERTICALES[l.vertical] || 'No terminó');
       par('Estado', estado(l).t);
       par('Pidió el plan', l.pidio_dm ? 'Sí' : 'No');
-      if(l.origen) par('Origen', l.origen);
+      par('Fuente', l.fuente);
+      if(l.manychat_sid){
+        parLink('Abrir en ManyChat', l.manychat_sid,
+          (l.manychat_pid
+            ? URL_MANYCHAT.replace('{PID}', l.manychat_pid).replace('{SID}', l.manychat_sid)
+            : null));
+      }
       for(var n = 1; n <= 5; n++){
         par(TITULOS[n-1], (l.respuestas && l.respuestas[n]) ? leible(l.respuestas[n]) : 'Sin responder');
       }
@@ -1832,10 +2104,10 @@ footer a{color:var(--gris)}
     });
 
     document.getElementById('panel-csv').addEventListener('click', function(){
-      var cab = ['fecha','nombre','edad','email','telefono','vertical','estado','asignado','origen'];
+      var cab = ['fecha','nombre','edad','instagram','telefono','vertical','fuente','id_manychat','estado','asignado'];
       var filas = filtrados().map(function(l){
-        return [l.creado_en, l.nombre, l.edad, l.email, l.telefono, l.vertical,
-                estado(l).t, l.asignado, l.origen]
+        return [l.creado_en, l.nombre, l.edad || l.edad_tramo, l.instagram, l.telefono, l.vertical,
+                l.fuente, l.manychat_sid, estado(l).t, l.asignado]
           .map(function(c){ return '"' + String(c === null || c === undefined ? '' : c).replace(/"/g,'""') + '"'; })
           .join(',');
       });
@@ -1872,7 +2144,7 @@ footer a{color:var(--gris)}
   // ===== NAVEGACIÓN =====
   document.querySelectorAll('[data-ir]').forEach(function(b){
     b.addEventListener('click', function(){
-      if(this.dataset.ir === 'datos') evento('clic_empezar');
+      if(this.dataset.ir === '1') evento('clic_empezar');
       historial.push(actual); ver(this.dataset.ir);
     });
   });
@@ -1886,6 +2158,15 @@ footer a{color:var(--gris)}
       r[q] = this.dataset.v;
       evento('pregunta', {n: q, valor: this.dataset.v});
       if(q < 5){ ver(String(q+1)); return; }
+
+      // Con MODO_DESCARTE = 'Y' hace falta la edad, que se pide en el
+      // formulario, asi que el corte no puede decidirse todavia. Con 'O'
+      // el capital solo ya basta y se corta aqui, sin pedir ningun dato.
+      if(MODO_DESCARTE === 'O' && CAPITAL_DESCARTA.indexOf(r[3]) !== -1){
+        evento('no_cualifica', {motivo: 'sin_capital', valor: r[3]});
+        irANoMomento();
+        return;
+      }
       pintarResultado();
     });
   });
@@ -1939,4 +2220,3 @@ footer a{color:var(--gris)}
 </script>
 </body>
 </html>
-
