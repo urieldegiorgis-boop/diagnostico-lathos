@@ -1887,9 +1887,9 @@ footer a{color:var(--gris)}
 
       var lista = filtrados();
       var t = document.getElementById('panel-tabla');
-      t.innerHTML = '<tr><th>Fecha</th><th>Nombre</th><th>Instagram</th><th>WhatsApp</th><th>Vertical</th><th>Fuente</th><th>Estado</th><th>Asignado</th></tr>';
+      t.innerHTML = '<tr><th>Fecha</th><th>Nombre</th><th>Edad</th><th>Instagram</th><th>WhatsApp</th><th>Vertical</th><th>Fuente</th><th>Estado</th><th>Asignado</th></tr>';
       if(!lista.length){
-        t.innerHTML += '<tr><td colspan="8" style="color:var(--gris)">Ningún lead ' +
+        t.innerHTML += '<tr><td colspan="9" style="color:var(--gris)">Ningún lead ' +
                        (SEG ? 'en este segmento con el filtro elegido.' : 'en este filtro.') + '</td></tr>';
         return;
       }
@@ -1898,7 +1898,8 @@ footer a{color:var(--gris)}
         tr.setAttribute('data-id', l.id);
         [new Date(l.creado_en).toLocaleDateString('es-ES') + ' ' +
            new Date(l.creado_en).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}),
-         l.nombre, (l.instagram ? '@' + l.instagram : '—'), l.telefono,
+         l.nombre, (l.edad || TRAMOS[l.edad_tramo] || '—'),
+         (l.instagram ? '@' + l.instagram : '—'), l.telefono,
          VERTICALES[l.vertical] || '—',
          l.fuente || '—'].forEach(function(c){
           var td = document.createElement('td');
