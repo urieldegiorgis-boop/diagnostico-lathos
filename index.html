@@ -668,6 +668,12 @@ footer a{color:var(--gris)}
       <h5>Paso a paso</h5>
       <div class="barras" id="panel-embudo"></div>
 
+      <p class="nota-barras"><b>Ojo con las fechas.</b> El orden del embudo cambió:
+      antes el formulario iba justo después de "Empezar" y ahora va al final, después
+      del resultado. Los datos anteriores al cambio siguen contados con el orden viejo,
+      así que «Dejan sus datos» puede salir por encima de «Llegan al resultado» hasta
+      que se renueve la muestra.</p>
+
       <h5>Fuente del trafico</h5>
       <div class="tabla-caja"><table class="tablita" id="panel-fuentes"></table></div>
       <p class="nota-barras">Pulsa una fila para ver sus leads. «Resto sin identificar» son
@@ -1574,7 +1580,7 @@ footer a{color:var(--gris)}
       visita:'Entran en la página', clic_empezar:'Pulsan "Empezar"',
       optin:'Dejan sus datos', pregunta:'Responden preguntas',
       resultado:'Llegan al resultado', pide_dm:'Piden el plan por DM',
-      edad_ok:'Pasan la edad', form_inicio:'Empiezan el formulario',
+      form_inicio:'Empiezan el formulario',
       form_error:'Fallo de validación',
       no_cualifica:'Descartados', clic_video_descarte:'Ven el vídeo de descarte',
       abre_ig:'Abren Instagram',
@@ -1671,6 +1677,12 @@ footer a{color:var(--gris)}
       });
     }
 
+    function sesionesPregunta(d, n){
+      return (d.respuestas || [])
+        .filter(function(x){ return String(x.n) === String(n); })
+        .reduce(function(a, b){ return a + b.total; }, 0);
+    }
+
     function pintar(d){
       DATOS = d;
       LEADS = d.leads || [];
@@ -1688,6 +1700,7 @@ footer a{color:var(--gris)}
       var kpis = [
         ['Visitas', visitas, null],
         ['Pulsan empezar', ev.clic_empezar || 0, pct(ev.clic_empezar || 0, visitas)],
+        ['Contestan la 1.ª', sesionesPregunta(d, 1), pct(sesionesPregunta(d, 1), visitas)],
         ['Llegan al resultado', ev.resultado || 0, pct(ev.resultado || 0, visitas)],
         ['Dejan sus datos', ev.optin || 0, pct(ev.optin || 0, visitas)],
         ['Piden el plan por DM', ev.pide_dm || 0, pct(ev.pide_dm || 0, visitas)],
@@ -1707,7 +1720,8 @@ footer a{color:var(--gris)}
       barras(document.getElementById('panel-embudo'), [
         [ETIQUETAS.visita, visitas],
         [ETIQUETAS.clic_empezar, ev.clic_empezar || 0],
-        [ETIQUETAS.edad_ok, ev.edad_ok || 0],
+        ['Contestan la 1.ª pregunta', sesionesPregunta(d, 1)],
+        ['Contestan la 5.ª pregunta', sesionesPregunta(d, 5)],
         [ETIQUETAS.resultado, ev.resultado || 0, {t:'paso', v:'resultado'}],
         [ETIQUETAS.optin, ev.optin || 0, {t:'paso', v:'optin'}],
         [ETIQUETAS.pide_dm, ev.pide_dm || 0, {t:'paso', v:'pide_dm'}]
