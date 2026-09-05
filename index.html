@@ -795,7 +795,8 @@ footer a{color:var(--gris)}
           <button class="filtro" data-f="llamar">Para llamar</button>
           <button class="filtro" data-f="corto">Se cayó a medias</button>
           <button class="filtro" data-f="sinpedir">Vio el plan, no lo pidió</button>
-          <button class="filtro" data-f="pidio">Pidió el plan</button>
+          <button class="filtro" data-f="pidio">Recibió el plan</button>
+          <button class="filtro" data-f="proceso">Entró al proceso</button>
           <button class="filtro" data-f="sinasignar">Sin asignar</button>
         </div>
         <h5>Listado</h5>
@@ -1875,7 +1876,7 @@ footer a{color:var(--gris)}
         [ETIQUETAS.optin, ev.optin || 0, {t:'paso', v:'optin'}],
         [ETIQUETAS.recibe_plan, (ev.recibe_plan || 0) + (ev.pide_dm || 0), {t:'paso', v:'pide_dm'}],
         [ETIQUETAS.descarga_pdf, ev.descarga_pdf || 0],
-        [ETIQUETAS.a_calendly, ev.a_calendly || 0]
+        [ETIQUETAS.a_calendly, ev.a_calendly || 0, {t:'paso', v:'a_calendly'}]
       ], visitas);
 
       // edad
@@ -1944,7 +1945,8 @@ footer a{color:var(--gris)}
     // En qué punto se quedó cada lead
     function estado(l){
       var hechas = l.respuestas ? Object.keys(l.respuestas).length : 0;
-      if(l.pidio_dm) return {c:'pidio', t:'Recibió el plan', k:'hecho'};
+      if(l.fue_a_calendly) return {c:'proceso', t:'Entró al proceso de selección', k:'hecho'};
+      if(l.pidio_dm) return {c:'pidio', t:'Recibió el plan, no entró', k:'calor'};
       if(l.vertical) return {c:'sinpedir', t:'Vio el plan, no lo pidió', k:'calor'};
       if(hechas > 0) return {c:'corto', t:'Se cayó en la ' + (hechas + 1) + '.ª pregunta', k:'medio'};
       return {c:'corto', t:'Solo dejó sus datos', k:'frio'};
@@ -1962,6 +1964,7 @@ footer a{color:var(--gris)}
       if(s.t === 'paso'){
         if(s.v === 'resultado') return !!l.vertical;
         if(s.v === 'pide_dm')   return !!l.pidio_dm;
+        if(s.v === 'a_calendly') return !!l.fue_a_calendly;
         return true;                       // optin = todo lead guardado
       }
       if(s.t === 'edad'){
@@ -2025,9 +2028,10 @@ footer a{color:var(--gris)}
       pintarChipSeg(base.length);
       var asignados = base.filter(function(l){ return l.asignado; }).length;
       var llamar = base.filter(function(l){ return !l.pidio_dm; }).length;
+      var proceso = base.filter(function(l){ return l.fue_a_calendly; }).length;
       var ck = document.getElementById('leads-kpis');
       ck.innerHTML = '';
-      [[SEG ? 'Leads del segmento' : 'Leads totales', base.length], ['Para llamar', llamar],
+      [[SEG ? 'Leads del segmento' : 'Leads totales', base.length], ['Entraron al proceso', proceso], ['Para llamar', llamar],
        ['Asignados', asignados], ['Sin asignar', base.length - asignados]].forEach(function(k){
         var el = document.createElement('div');
         el.className = 'kpi';
@@ -2126,6 +2130,7 @@ footer a{color:var(--gris)}
       par('Vertical', VERTICALES[l.vertical] || 'No terminó');
       par('Estado', estado(l).t);
       par('Recibió el plan', l.pidio_dm ? 'Sí' : 'No');
+      par('Entró al proceso (Calendly)', l.fue_a_calendly ? 'Sí' : 'No');
       par('Fuente', l.fuente);
       if(l.manychat_sid){
         parLink('Abrir en ManyChat', l.manychat_sid,
