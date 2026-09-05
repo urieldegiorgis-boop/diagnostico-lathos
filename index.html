@@ -532,7 +532,10 @@ h2{
 .tarjeta{
   background:var(--negro);color:var(--blanco);
   border-radius:22px;padding:34px 26px;margin-bottom:22px;
+  text-align:center;
 }
+.tarjeta h3,.tarjeta p,.tarjeta .kicker,.tarjeta .franja{margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance}
+.tarjeta p{max-width:56ch}
 .tarjeta .kicker{
   font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
   color:var(--azul-claro);margin-bottom:14px;
@@ -567,6 +570,108 @@ h2{
 .aviso h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
 .aviso p{font-size:15px;color:var(--gris)}
 
+/* ---------- nombre en portada ---------- */
+.nombre-caja{max-width:420px;margin:0 auto 4px}
+.nombre-caja .error{text-align:center}
+.nombre-caja .campo{margin-bottom:10px;text-align:left}
+.nombre-caja input{text-align:center;font-size:17px;padding:18px 16px}
+.nombre-caja .cta{margin-top:0}
+#p-hero .pie-cta{margin-top:12px}
+
+/* ---------- pantalla final: PDF + cuenta atrás ---------- */
+#p-final{max-width:760px;margin-left:auto;margin-right:auto}
+.pdf-caja{
+  border:1.5px solid var(--linea);border-radius:18px;overflow:hidden;
+  background:var(--hueso);margin:22px 0 14px;
+}
+.pdf-caja iframe{display:block;width:100%;height:min(70vh,640px);border:0;background:var(--blanco)}
+.pdf-vacio{
+  padding:48px 22px;text-align:center;color:var(--gris);font-size:14.5px;line-height:1.55;
+}
+.pdf-vacio b{display:block;color:var(--tinta);font-size:17px;margin-bottom:6px}
+.pdf-bts{display:flex;flex-direction:column;gap:9px}
+.cuenta-atras{
+  display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
+  background:var(--negro);color:var(--blanco);border-radius:18px;
+  padding:26px 20px 22px;margin-top:22px;
+}
+.cuenta-atras.lista{cursor:pointer}
+.cuenta-atras .proceso{width:100%;margin-top:4px}
+.cuenta-atras .pie-cta{color:rgba(255,255,255,.72)}
+.cuenta-atras.lista .pie-cta{color:#DCE5FF}
+.cta.blanco{background:var(--blanco);color:var(--azul)}
+.cta.blanco:hover{background:#F0F4FF}
+.cuenta-atras .cta.bloqueada{background:rgba(255,255,255,.10);color:rgba(255,255,255,.7)}
+.cuenta-atras .cta.bloqueada:hover{background:rgba(255,255,255,.10)}
+.cuenta-atras .cta.bloqueada b{background:rgba(255,255,255,.16);color:var(--blanco);border-color:transparent}
+#p-final .alumnos-tit,#p-final .ayuda,#p-final .eyebrow,#p-final h2{text-align:center;margin-left:auto;margin-right:auto}
+#p-final .ayuda{max-width:60ch}
+#p-final h2{text-wrap:balance}
+.cuenta-anillo{position:relative;flex:0 0 auto;width:56px;height:56px}
+.cuenta-anillo svg{width:56px;height:56px;transform:rotate(-90deg)}
+.cuenta-anillo .pista-a{fill:none;stroke:rgba(255,255,255,.16);stroke-width:4}
+.cuenta-anillo .avance-a{fill:none;stroke:var(--azul-claro);stroke-width:4;stroke-linecap:round}
+.cuenta-anillo b{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;
+}
+.cuenta-txt{font-size:14.5px;line-height:1.45;color:#C9CCD2}
+.cuenta-txt strong{display:block;color:var(--blanco);font-size:16px;margin-bottom:3px}
+.cuenta-atras.lista{background:var(--azul)}
+.cuenta-atras.lista .cuenta-txt{color:#DCE5FF}
+.cuenta-atras.lista .avance-a{stroke:var(--blanco)}
+.proceso{text-align:center}
+.proceso .cta,.pdf-bts .cta{text-align:center;text-decoration:none}
+[hidden]{display:none!important}
+a.cta{display:block;text-align:center;text-decoration:none}
+.cta.bloqueada{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--hueso);color:var(--gris);cursor:not-allowed;
+}
+.cta.bloqueada:hover{background:var(--hueso)}
+.cta.bloqueada b{
+  font-variant-numeric:tabular-nums;background:var(--blanco);color:var(--tinta);
+  border:1px solid var(--linea);border-radius:8px;padding:2px 9px;font-size:14px;
+}
+.proceso .cta.blanco{animation:aparece .4s ease both}
+@keyframes aparece{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.alumnos-tit em{font-style:normal;color:var(--azul)}
+
+/* ---------- Trustpilot ---------- */
+.tp{margin-top:52px;padding-top:30px;border-top:1px solid var(--linea);text-align:center}
+.tp-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
+.estrellas{display:flex;gap:2px}
+.estrellas i{
+  width:20px;height:20px;background:#00B67A;border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:12px;font-style:normal;line-height:1;
+}
+.tp-nota{font-weight:800;font-size:20px;letter-spacing:-.02em}
+.tp-txt{font-size:14px;color:var(--gris)}
+.tp-txt a{color:var(--gris)}
+.tp-cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:26px}
+.tp-cifra{background:var(--hueso);border:1px solid var(--linea);border-radius:16px;padding:18px 10px}
+.tp-cifra .n{font-size:clamp(24px,6vw,32px);font-weight:800;letter-spacing:-.035em;line-height:1;color:var(--azul)}
+.tp-cifra .t{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);margin-top:8px}
+.tp-ops{display:grid;grid-template-columns:1fr;gap:12px}
+.tp-op{
+  background:var(--blanco);border:1.5px solid var(--linea);border-radius:14px;
+  padding:18px 19px;text-align:left;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.tp-op:hover{transform:translateY(-3px);border-color:#CFD4DD;box-shadow:0 12px 28px -12px rgba(10,10,10,.22)}
+.tp-op .e{color:#00B67A;font-size:14px;letter-spacing:2px}
+.tp-op p{font-size:15px;color:var(--tinta);margin:10px 0 12px;line-height:1.45}
+.tp-op .q{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
+.rejilla{display:grid;grid-template-columns:1fr;gap:14px}
+.rejilla .alu{width:100%}
+@media (min-width:760px){
+  .pdf-bts{flex-direction:row}
+  .pdf-bts .cta{margin:0}
+  .tp-ops{grid-template-columns:repeat(3,1fr)}
+  .rejilla{grid-template-columns:repeat(3,1fr)}
+}
+
 footer{
   border-top:1px solid var(--linea);margin-top:40px;padding:26px 0 44px;
   font-size:12px;color:var(--gris);line-height:1.6;
@@ -590,7 +695,7 @@ footer a{color:var(--gris)}
   #p-hero .alumnos{margin-top:44px}
 
   /* preguntas */
-  #p-1,#p-2,#p-3,#p-4,#p-5,#p-menor{max-width:800px;margin-left:auto;margin-right:auto}
+  #p-1,#p-2,#p-3,#p-4,#p-5,#p-6,#p-7,#p-menor,#p-nomomento{max-width:800px;margin-left:auto;margin-right:auto}
   .pantalla h2{font-size:clamp(30px,3.6vw,40px)}
   .ayuda{font-size:16.5px;max-width:52ch}
   .opciones{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -620,19 +725,6 @@ footer a{color:var(--gris)}
   <div class="carga-in">
     <span class="carga-marca">LATHOS<sup>&reg;</sup></span>
     <span class="carga-linea"><i></i></span>
-  </div>
-</div>
-
-<div class="copia" id="copia">
-  <div class="copia-caja">
-    <b>Tu mensaje está listo</b>
-    <p>Lo hemos copiado. Pégalo en el chat de Instagram y envíalo — recibes tu plan al momento.</p>
-    <div class="copia-msg" id="copia-msg"></div>
-    <div class="copia-ok" id="copia-ok"></div>
-    <div class="copia-bts">
-      <button class="cta azul" id="copia-ir">Abrir Instagram</button>
-      <button class="mini" id="copia-cerrar">Volver</button>
-    </div>
   </div>
 </div>
 
@@ -751,8 +843,16 @@ footer a{color:var(--gris)}
   <section class="pantalla activa" id="p-hero">
     <p class="eyebrow">Diagnóstico gratuito</p>
     <h1>Recibe gratis tu plan para conseguir tu primer cliente... <em>sin dejar tu trabajo</em></h1>
-    <p class="bajada">5 preguntas, 2 minutos. El plan se calcula sobre las horas que tienes de verdad, no sobre las que te gustaría tener.</p>
-    <button class="cta" data-ir="1">Empezar el diagnóstico</button>
+    <p class="bajada">7 preguntas, 2 minutos. El plan se calcula sobre las horas que tienes de verdad, no sobre las que te gustaría tener.</p>
+
+    <div class="nombre-caja">
+      <div class="campo" id="c-nombre">
+        <input type="text" id="f-nombre" autocomplete="given-name" placeholder="¿Cómo te llamas?" maxlength="60">
+        <span class="error">Escribe tu nombre para empezar.</span>
+      </div>
+      <button class="cta" id="btn-nombre">Empecemos</button>
+      <p class="pie-cta">Sin registro. Solo tu nombre para que el plan hable contigo.</p>
+    </div>
 
     <div class="datos" id="datos"></div>
 
@@ -769,74 +869,104 @@ footer a{color:var(--gris)}
 
   </section>
 
-  <!-- P1 -->
+  <!-- P1 · OCUPACIÓN -->
   <section class="pantalla" id="p-1">
-    <p class="contador">Pregunta 1 de 5 · Tu día</p>
-    <h2>¿A qué le dedicas hoy la mayor parte del día?</h2>
+    <p class="contador">Pregunta 1 de 7 · Tu día</p>
+    <h2 id="t-1">¿A qué te dedicas actualmente?</h2>
     <p class="ayuda">Lo que ocupa tus horas ahora mismo, no lo que te gustaría estar haciendo.</p>
     <div class="opciones">
-      <button class="opcion" data-q="1" data-v="jornada"><span class="marca-op"></span>Trabajo a jornada completa</button>
-      <button class="opcion" data-q="1" data-v="media"><span class="marca-op"></span>Trabajo a media jornada</button>
-      <button class="opcion" data-q="1" data-v="trabajo_estudio"><span class="marca-op"></span>Trabajo y estudio</button>
-      <button class="opcion" data-q="1" data-v="estudio"><span class="marca-op"></span>Estudio</button>
-      <button class="opcion" data-q="1" data-v="nada"><span class="marca-op"></span>Ahora mismo nada</button>
+      <button class="opcion" data-q="1" data-v="completa"  data-txt="trabajando a jornada completa"><span class="marca-op"></span>Trabajo a jornada completa</button>
+      <button class="opcion" data-q="1" data-v="media"     data-txt="trabajando a media jornada"><span class="marca-op"></span>Trabajo a media jornada</button>
+      <button class="opcion" data-q="1" data-v="media_est" data-txt="trabajando a media jornada y estudiando"><span class="marca-op"></span>Trabajo a media jornada y estudio</button>
+      <button class="opcion" data-q="1" data-v="emprende"  data-txt="emprendiendo"><span class="marca-op"></span>Soy emprendedor</button>
+      <button class="opcion" data-q="1" data-v="estudia"   data-txt="estudiando a tiempo completo"><span class="marca-op"></span>Estudio a tiempo completo</button>
+      <button class="opcion" data-q="1" data-v="nada"      data-txt="sin ocupación ahora mismo"><span class="marca-op"></span>Ahora mismo no hago nada</button>
     </div>
     <button class="atras" data-atras="hero">← Atrás</button>
   </section>
 
-  <!-- P2 -->
+  <!-- P2 · PUNTO -->
   <section class="pantalla" id="p-2">
-    <p class="contador">Pregunta 2 de 5 · Tus horas</p>
-    <h2>¿Cuánto tiempo libre tienes de verdad, y cuándo?</h2>
-    <p class="ayuda">De esto depende el ritmo del plan. Sé realista: es lo que hace que se cumpla o no.</p>
+    <p class="contador">Pregunta 2 de 7 · Tu punto de partida</p>
+    <h2 id="t-2">¿En qué punto estás hoy?</h2>
+    <p class="ayuda">Sin adornos. Cuanto más real, mejor sale el plan.</p>
     <div class="opciones">
-      <button class="opcion" data-q="2" data-v="rotativo"><span class="marca-op"></span>Ratos sueltos y me cambian cada semana</button>
-      <button class="opcion" data-q="2" data-v="noches"><span class="marca-op"></span>Alguna hora suelta, casi siempre de noche</button>
-      <button class="opcion" data-q="2" data-v="bloques"><span class="marca-op"></span>Puedo bloquear mañanas o tardes entre semana</button>
-      <button class="opcion" data-q="2" data-v="dias"><span class="marca-op"></span>Tengo días libres completos</button>
+      <button class="opcion" data-q="2" data-v="cero"     data-txt="sin haber empezado nada"><span class="marca-op"></span>Todavía no he empezado nada</button>
+      <button class="opcion" data-q="2" data-v="probando" data-txt="probando cosas sin resultados"><span class="marca-op"></span>He probado cosas, pero sin resultados</button>
+      <button class="opcion" data-q="2" data-v="menos2k"  data-txt="facturando menos de 2.000 € al mes"><span class="marca-op"></span>Ya facturo algo, menos de 2.000 € al mes</button>
+      <button class="opcion" data-q="2" data-v="mas2k"    data-txt="facturando más de 2.000 € al mes"><span class="marca-op"></span>Facturo más de 2.000 € al mes</button>
     </div>
     <button class="atras" data-atras="1">← Atrás</button>
   </section>
 
-  <!-- P3 -->
+  <!-- P3 · PREOCUPACIÓN -->
   <section class="pantalla" id="p-3">
-    <p class="contador">Pregunta 3 de 5 · Tu margen</p>
-    <h2>Para arrancar, ¿de cuánto podrías disponer?</h2>
-    <p class="ayuda">Hay caminos que no necesitan nada y otros que sí. Esto decide cuál te toca.</p>
+    <p class="contador">Pregunta 3 de 7 · Tu preocupación</p>
+    <h2 id="t-3">¿Cuál es tu mayor preocupación a día de hoy?</h2>
+    <p class="ayuda">Con esto ajustamos por dónde empieza tu plan.</p>
     <div class="opciones">
-      <button class="opcion" data-q="3" data-v="cero"><span class="marca-op"></span>Ahora mismo de nada</button>
-      <button class="opcion" data-q="3" data-v="menos200"><span class="marca-op"></span>Menos de 200 €</button>
-      <button class="opcion" data-q="3" data-v="200a1000"><span class="marca-op"></span>Entre 200 € y 1.000 €</button>
-      <button class="opcion" data-q="3" data-v="mas1000"><span class="marca-op"></span>Más de 1.000 €</button>
+      <button class="opcion" data-q="3" data-v="no_llego"    data-txt="no ganas lo suficiente para vivir como quieres"><span class="marca-op"></span>No gano el dinero suficiente para vivir como quiero</button>
+      <button class="opcion" data-q="3" data-v="justo"       data-txt="trabajas pero llegas justo y quieres salir de ahí"><span class="marca-op"></span>Trabajo pero gano lo justo y quiero salir de esta situación</button>
+      <button class="opcion" data-q="3" data-v="complemento" data-txt="buscas un complemento a tu trabajo actual"><span class="marca-op"></span>Quiero un complemento a mi trabajo actual</button>
+      <button class="opcion" data-q="3" data-v="curioso"     data-txt="quieres aprender algo nuevo y ver si te gusta"><span class="marca-op"></span>Solo quiero aprender algo nuevo y ver si me gusta</button>
     </div>
     <button class="atras" data-atras="2">← Atrás</button>
   </section>
 
-  <!-- P4 -->
+  <!-- P4 · PERFIL -->
   <section class="pantalla" id="p-4">
-    <p class="contador">Pregunta 4 de 5 · Lo tuyo</p>
-    <h2>¿Qué se te da mejor de forma natural?</h2>
+    <p class="contador">Pregunta 4 de 7 · Lo tuyo</p>
+    <h2 id="t-4">¿Qué tipo de trabajo te encaja más?</h2>
     <p class="ayuda">Lo primero que te salga. Esta es la que más pesa en el resultado.</p>
     <div class="opciones">
-      <button class="opcion" data-q="4" data-v="hablar"><span class="marca-op"></span>Que la gente confíe en mí cuando hablo</button>
-      <button class="opcion" data-q="4" data-v="mirar"><span class="marca-op"></span>Fijarme en qué se vende y por qué</button>
-      <button class="opcion" data-q="4" data-v="entender"><span class="marca-op"></span>Entender cómo funciona algo y mejorarlo</button>
+      <button class="opcion" data-q="4" data-v="ventas"  data-txt="hablar con gente y cerrar ventas"><span class="marca-op"></span>Hablar con gente y cerrar ventas</button>
+      <button class="opcion" data-q="4" data-v="ia"      data-txt="montar sistemas y automatizar con IA"><span class="marca-op"></span>Montar sistemas y automatizar con IA</button>
+      <button class="opcion" data-q="4" data-v="ecom"    data-txt="vender productos por internet"><span class="marca-op"></span>Vender productos por internet</button>
+      <button class="opcion" data-q="4" data-v="abierto" data-txt="lo que antes funcione"><span class="marca-op"></span>No lo tengo claro, quiero lo que antes funcione</button>
     </div>
     <button class="atras" data-atras="3">← Atrás</button>
   </section>
 
-  <!-- P5 -->
+  <!-- P5 · HORAS -->
   <section class="pantalla" id="p-5">
-    <p class="contador">Pregunta 5 de 5 · Tu freno</p>
-    <h2>¿Qué te ha frenado hasta ahora?</h2>
-    <p class="ayuda">Con esto ajustamos por dónde empieza tu plan.</p>
+    <p class="contador">Pregunta 5 de 7 · Tus horas</p>
+    <h2 id="t-5">¿Cuántas horas a la semana puedes dedicarle de verdad?</h2>
+    <p class="ayuda">De esto depende el ritmo del plan. Sé realista: es lo que hace que se cumpla o no.</p>
     <div class="opciones">
-      <button class="opcion" data-q="5" data-v="no_se"><span class="marca-op"></span>No sé qué hacer exactamente</button>
-      <button class="opcion" data-q="5" data-v="tiempo"><span class="marca-op"></span>No tengo tiempo</button>
-      <button class="opcion" data-q="5" data-v="lo_deje"><span class="marca-op"></span>Lo intenté y lo dejé</button>
-      <button class="opcion" data-q="5" data-v="dinero"><span class="marca-op"></span>Me falta dinero para empezar</button>
+      <button class="opcion" data-q="5" data-v="menos5" data-txt="menos de 5 horas"><span class="marca-op"></span>Menos de 5</button>
+      <button class="opcion" data-q="5" data-v="5a10"   data-txt="entre 5 y 10 horas"><span class="marca-op"></span>Entre 5 y 10</button>
+      <button class="opcion" data-q="5" data-v="10a20"  data-txt="entre 10 y 20 horas"><span class="marca-op"></span>Entre 10 y 20</button>
+      <button class="opcion" data-q="5" data-v="mas20"  data-txt="más de 20 horas"><span class="marca-op"></span>Más de 20</button>
     </div>
     <button class="atras" data-atras="4">← Atrás</button>
+  </section>
+
+  <!-- P6 · CAPITAL -->
+  <section class="pantalla" id="p-6">
+    <p class="contador">Pregunta 6 de 7 · Tu margen</p>
+    <h2 id="t-6">¿Con cuánto puedes empezar?</h2>
+    <p class="ayuda">Para invertir en tu formación y en las herramientas del primer mes. Hay caminos que no necesitan nada y otros que sí.</p>
+    <div class="opciones">
+      <button class="opcion" data-q="6" data-v="cero"     data-txt="nada ahora mismo"><span class="marca-op"></span>Ahora mismo con nada</button>
+      <button class="opcion" data-q="6" data-v="menos200" data-txt="menos de 200 €"><span class="marca-op"></span>Menos de 200 €</button>
+      <button class="opcion" data-q="6" data-v="200a1000" data-txt="entre 200 y 1.000 €"><span class="marca-op"></span>Entre 200 y 1.000 €</button>
+      <button class="opcion" data-q="6" data-v="mas1000"  data-txt="más de 1.000 €"><span class="marca-op"></span>Más de 1.000 €</button>
+    </div>
+    <button class="atras" data-atras="5">← Atrás</button>
+  </section>
+
+  <!-- P7 · CUÁNDO -->
+  <section class="pantalla" id="p-7">
+    <p class="contador">Pregunta 7 de 7 · Tu plazo</p>
+    <h2 id="t-7">¿Cuándo te gustaría resolver esto?</h2>
+    <p class="ayuda">Última. Con esto cerramos el ritmo de tu plan.</p>
+    <div class="opciones">
+      <button class="opcion" data-q="7" data-v="ya"      data-txt="quieres resolverlo cuanto antes"><span class="marca-op"></span>Cuanto antes, ya voy con retraso</button>
+      <button class="opcion" data-q="7" data-v="mes"     data-txt="te has puesto tres meses de plazo"><span class="marca-op"></span>En los próximos tres meses</button>
+      <button class="opcion" data-q="7" data-v="meses"   data-txt="lo quieres resuelto este año"><span class="marca-op"></span>Este año, sin agobios</button>
+      <button class="opcion" data-q="7" data-v="mirando" data-txt="todavía no te has puesto fecha"><span class="marca-op"></span>No tengo una fecha en la cabeza</button>
+    </div>
+    <button class="atras" data-atras="6">← Atrás</button>
   </section>
 
   <!-- DATOS -->
@@ -872,8 +1002,8 @@ footer a{color:var(--gris)}
     </div>
 
     <div class="muro" id="r-muro">
-      <h4>Tu plan de 30 días está listo</h4>
-      <p class="ayuda">Rellena esto y lo abrimos aquí mismo. Te lo mandamos también al DM para que no lo pierdas.</p>
+      <h4 id="r-muro-tit">Tu plan de 30 días está listo</h4>
+      <p class="ayuda">Rellena esto y lo abrimos aquí mismo. Te damos también el roadmap en PDF para que no lo pierdas.</p>
 
       <div class="formu">
         <div class="campo" id="c-edad">
@@ -883,17 +1013,11 @@ footer a{color:var(--gris)}
           <span class="error">Pon una edad válida.</span>
         </div>
 
-        <div class="campo" id="c-nombre">
-          <label for="f-nombre">Tu nombre</label>
-          <input type="text" id="f-nombre" autocomplete="given-name" placeholder="Cómo te llamamos">
-          <span class="error">Escribe tu nombre.</span>
-        </div>
-
-        <div class="campo" id="c-ig">
-          <label for="f-ig">Tu Instagram</label>
-          <input type="text" id="f-ig" autocomplete="off" autocapitalize="off"
-                 spellcheck="false" placeholder="@tuusuario">
-          <span class="error">Escribe tu usuario de Instagram.</span>
+        <div class="campo" id="c-email">
+          <label for="f-email">Tu email</label>
+          <input type="email" id="f-email" autocomplete="email" inputmode="email"
+                 autocapitalize="off" spellcheck="false" placeholder="tu@email.com">
+          <span class="error">Ese email no parece válido.</span>
         </div>
 
         <div class="campo" id="c-tel">
@@ -925,7 +1049,7 @@ footer a{color:var(--gris)}
 
         <label class="consent" id="c-ok">
           <input type="checkbox" id="f-ok">
-          <span>Acepto que Lathos me contacte por WhatsApp para enviarme mi diagnóstico y contenido relacionado. Puedo darme de baja cuando quiera.</span>
+          <span>Acepto que Lathos me contacte por WhatsApp o email para enviarme mi plan y contenido relacionado. Puedo darme de baja cuando quiera.</span>
         </label>
 
         <button class="cta" id="btn-datos">Ver mi plan de 30 días</button>
@@ -935,13 +1059,13 @@ footer a{color:var(--gris)}
 
     <div id="r-plan" hidden>
       <div class="bloque">
-        <h4>Tus primeros 30 días</h4>
+        <h4 id="r-plan-tit">Tus primeros 30 días</h4>
         <ul class="lista" id="r-pasos"></ul>
         <p class="nota" id="r-nota"></p>
       </div>
 
-      <button class="cta azul" id="btn-dm">Recibir mi plan por Instagram</button>
-      <p class="pie-cta">Te lo enviamos al DM. Tardas menos en abrirlo que en leer esto.</p>
+      <button class="cta azul" id="btn-plan">Recibir mi plan</button>
+      <p class="pie-cta">Te abrimos el roadmap operativo de tu camino y desbloqueamos el proceso de selección.</p>
     </div>
 
     <section class="alumnos">
@@ -954,6 +1078,52 @@ footer a{color:var(--gris)}
       <div class="tira-pistas" id="tira-pistas"></div>
       <div class="mas-test-cont"><a class="mas-test" data-ev="yt_final" href="https://www.youtube.com/@lathos.alumnos" target="_blank" rel="noopener"><svg class="yt" viewBox="0 0 28 20" aria-hidden="true"><path d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z" fill="currentColor"/><path d="M11.2 14.3 18.4 10l-7.2-4.3v8.6z" fill="#FF0033"/></svg>Ver más testimonios</a></div>
       <div class="mas-test-cont"><a class="web-btn" data-ev="web_final" href="https://www.lathos.es" target="_blank" rel="noopener">Sitio web</a></div>
+    </section>
+  </section>
+
+  <!-- FINAL: PDF + CUENTA ATRÁS + PROCESO DE SELECCIÓN -->
+  <section class="pantalla" id="p-final">
+    <p class="eyebrow" id="fin-eyebrow">Tu roadmap · Nivel 01</p>
+    <h2 id="fin-titulo">Aquí tienes tu roadmap</h2>
+    <p class="ayuda" id="fin-texto"></p>
+
+    <div class="pdf-caja" id="pdf-caja"></div>
+
+    <div class="cuenta-atras" id="cuenta">
+      <div class="cuenta-anillo">
+        <svg viewBox="0 0 56 56" aria-hidden="true">
+          <circle class="pista-a" cx="28" cy="28" r="24"></circle>
+          <circle class="avance-a" id="cuenta-anillo" cx="28" cy="28" r="24"></circle>
+        </svg>
+        <b id="cuenta-n">10</b>
+      </div>
+      <p class="cuenta-txt"><strong id="cuenta-tit">Abriendo tu proceso de selección</strong><span id="cuenta-sub">Lathos no es para todo el mundo. En unos segundos desbloqueamos el acceso para que reserves tu llamada.</span></p>
+      <div class="proceso" id="proceso">
+        <span class="cta bloqueada" id="btn-bloqueado">Entrar al proceso de selección <b id="reloj">10</b></span>
+        <a class="cta blanco" id="btn-calendly" href="#" target="_blank" rel="noopener" hidden>Entrar al proceso de selección →</a>
+      </div>
+    </div>
+
+    <section class="tp">
+      <h4 class="alumnos-tit">Más de <em>1.000</em> alumnos se han formado con nosotros. Esto es lo que dicen</h4>
+      <div class="tp-top">
+        <div class="estrellas"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div>
+        <span class="tp-nota">4,6</span>
+        <span class="tp-txt">Excelente · <a href="https://es.trustpilot.com/review/lathosclub.com" target="_blank" rel="noopener" data-ev="tp_final">151 opiniones en Trustpilot</a></span>
+      </div>
+      <div class="tp-cifras">
+        <div class="tp-cifra"><div class="n" data-n="87" data-suf=" %">0 %</div><div class="t">Opiniones de 5 estrellas</div></div>
+        <div class="tp-cifra"><div class="n" data-n="72" data-suf=" %">0 %</div><div class="t">De alumnos renuevan</div></div>
+        <div class="tp-cifra"><div class="n" data-n="281" data-suf=" mil">0 mil</div><div class="t">Siguen a Lathos</div></div>
+      </div>
+      <div class="tp-ops" id="tp-ops"></div>
+    </section>
+
+    <section class="alumnos">
+      <h4 class="alumnos-tit">Los alumnos que pasaron <em>este mismo proceso</em></h4>
+      <p class="ayuda" style="text-align:center;margin:0 auto 22px">Empezaron donde estás tú ahora. Estos son sus resultados, contados por ellos.</p>
+      <div class="rejilla" id="rejilla-final"></div>
+      <div class="mas-test-cont"><a class="mas-test" data-ev="yt_proceso" href="https://www.youtube.com/@lathos.alumnos" target="_blank" rel="noopener"><svg class="yt" viewBox="0 0 28 20" aria-hidden="true"><path d="M27.4 3.1A3.5 3.5 0 0 0 24.9.6C22.7 0 14 0 14 0S5.3 0 3.1.6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9a3.5 3.5 0 0 0 2.5 2.5C5.3 20 14 20 14 20s8.7 0 10.9-.6a3.5 3.5 0 0 0 2.5-2.5C28 14.7 28 10 28 10s0-4.7-.6-6.9z" fill="currentColor"/><path d="M11.2 14.3 18.4 10l-7.2-4.3v8.6z" fill="#FF0033"/></svg>Ver más testimonios</a></div>
     </section>
   </section>
 
@@ -1188,14 +1358,20 @@ footer a{color:var(--gris)}
   })();
 
   // ===== CONFIGURACIÓN =====
-  var CUENTA_IG = 'dollardoradoyt';     // cuenta por defecto que recibe el DM
-  var REF_BASE  = 'plandiag';           // <- debe coincidir con el trigger de ManyChat
+  // Guía en PDF de cada camino. Rutas relativas al index.html (súbelas al mismo
+  // repo, p. ej. en una carpeta /pdf) o URLs completas. Si el archivo no existe,
+  // la pantalla final enseña un aviso de "guía en preparación" en su lugar.
+  var PDF = {
+    ventas: 'pdf/ventas.pdf',
+    ia:     'pdf/ia.pdf',
+    ecom:   'pdf/ecommerce.pdf'
+  };
 
-  // Cada Instagram tiene su propia pagina de ManyChat, y un flujo solo responde
-  // desde la suya. Mientras el flujo de entrega exista SOLO en Dollardoradoyt hay
-  // que dejar esto en false: si se pone en true sin duplicar el flujo, los leads de
-  // Dollar.Business escriben a un buzon donde no hay nada montado.
-  var DM_POR_CUENTA = false;
+  // Agenda a la que se redirige tras la cuenta atrás.
+  var CALENDLY = 'https://calendly.com/lathosacademy/w';
+  // Segundos de cuenta atrás hasta desbloquear "Entrar al proceso de selección".
+  // 0 = botón visible desde el principio.
+  var SEGUNDOS_CALENDLY = 10;
 
   // ---- Reglas de descarte ----------------------------------------------
   // MODO_DESCARTE decide como se combinan las dos condiciones:
@@ -1222,25 +1398,6 @@ footer a{color:var(--gris)}
     return MODO_DESCARTE === 'Y' ? (porEdad && porCapital) : (porEdad || porCapital);
   }
   // ----------------------------------------------------------------------
-  var CUENTAS = { '1144662':'dollardoradoyt', '4706795':'dollar.business' };
-
-  // pid = la cuenta de Instagram, lo trae ManyChat en el mcp_token de la URL
-  var PID_ORIGEN = (function(){
-    try{
-      var m = /[?&]mcp_token=([^&#.]+)/.exec(location.search);
-      if(!m) return null;
-      var b = m[1].replace(/-/g,'+').replace(/_/g,'/');
-      while(b.length % 4) b += '=';
-      var j = JSON.parse(atob(b));
-      return (j && j.pid) ? String(j.pid) : null;
-    }catch(e){ return null; }
-  })();
-
-  function cuentaDestino(){
-    if(!DM_POR_CUENTA) return CUENTA_IG;
-    return (PID_ORIGEN && CUENTAS[PID_ORIGEN]) ? CUENTAS[PID_ORIGEN] : CUENTA_IG;
-  }
-
   // Cada diagnóstico se guarda en la tabla `diagnosticos` de Supabase.
   var ENDPOINT   = 'https://hseluvpwqjgallfyzori.supabase.co/rest/v1/diagnosticos';
   var SUPA_KEY   = 'sb_publishable_Wa40fMe8dfCEuovfnddCnw__6bd-Qai';
@@ -1300,8 +1457,8 @@ footer a{color:var(--gris)}
     window.scrollTo({top:0, behavior:'auto'});
     var n = parseInt(id, 10);
     if(!isNaN(n)){
-      barra.style.width = (n/5*100) + '%';
-      paso.textContent = n + ' de 5';
+      barra.style.width = (n/7*100) + '%';
+      paso.textContent = n + ' de 7';
     } else if(id === 'resultado'){
       barra.style.width = '100%';
       paso.textContent = 'Tu resultado';
@@ -1311,6 +1468,9 @@ footer a{color:var(--gris)}
     } else if(id === 'nomomento' || id === 'menor'){
       barra.style.width = '100%';
       paso.textContent = 'Tu resultado';
+    } else if(id === 'final'){
+      barra.style.width = '100%';
+      paso.textContent = 'Tu guía';
     } else {
       barra.style.width = '100%';
       paso.textContent = 'Casi está';
@@ -1318,16 +1478,12 @@ footer a{color:var(--gris)}
   }
 
   // ===== ASIGNACIÓN DE VERTICAL =====
+  // r[4] = perfil (ventas | ia | ecom | abierto), r[5] = horas, r[6] = capital
   function calcular(){
-    var v;
-    if(r[4] === 'hablar')        v = 'ventas';
-    else if(r[4] === 'entender') v = 'ia';
-    else {                       // 'mirar'
-      v = (r[3] === '200a1000' || r[3] === 'mas1000') ? 'ecom' : 'ia';
-    }
-    // Corrector: horario rotativo no aguanta ecommerce
-    if(v === 'ecom' && r[2] === 'rotativo') v = 'ia';
-    return v;
+    if(r[4] && r[4] !== 'abierto') return r[4];
+    if(r[6] === 'menos200' || r[6] === '200a1000') return 'ventas';
+    if(r[6] === 'mas1000' && r[5] !== 'menos5')    return 'ecom';
+    return 'ia';
   }
 
   var TEXTOS = {
@@ -1367,22 +1523,24 @@ footer a{color:var(--gris)}
   };
 
   var HORAS = {
-    rotativo:'Con turnos que cambian cada semana, el plan se monta en bloques cortos que puedas mover de día. Nada que dependa de estar a la misma hora.',
-    noches:'Con una hora suelta por la noche se avanza, pero hay que protegerla. Una hora de verdad rinde más que tres a medias.',
-    bloques:'Poder bloquear mañanas o tardes entre semana es la mejor situación posible para esto: son las horas en las que las empresas están activas.',
-    dias:'Con días libres completos puedes hacer en dos jornadas lo que a otros les lleva dos semanas. Es tu mayor ventaja.'
+    menos5:'Con menos de 5 horas a la semana el plan se monta en bloques cortos y muy concretos. Se avanza, pero cada hora tiene que ir a un solo sitio.',
+    '5a10':'Entre 5 y 10 horas a la semana es el ritmo con el que empiezan la mayoría de nuestros alumnos que trabajan. Da para hacerlo bien si no se dispersan.',
+    '10a20':'Con 10 a 20 horas semanales puedes llevar el plan al ritmo completo: formación y práctica real en la misma semana.',
+    mas20:'Con más de 20 horas puedes hacer en dos semanas lo que a otros les lleva un mes. Es tu mayor ventaja: úsala para practicar, no solo para estudiar.'
   };
 
-  var VERT_ACTUAL = null, CTX_ACTUAL = '';
+  var VERT_ACTUAL = null;
 
   function pintarResultado(){
     var v = calcular();
     var t = TEXTOS[v];
     var kicker = document.querySelector('#p-resultado .kicker');
-    if(kicker) kicker.textContent = 'Tu camino';
+    if(kicker) kicker.textContent = datos.nombre ? ('Tu camino, ' + pila()) : 'Tu camino';
+    var muroTit = document.getElementById('r-muro-tit');
+    if(muroTit) muroTit.textContent = datos.nombre ? (pila() + ', tu plan de 30 días está listo') : 'Tu plan de 30 días está listo';
     var muro = document.getElementById('r-muro');
     var plan = document.getElementById('r-plan');
-    if(muro && !datos.nombre){ muro.hidden = false; if(plan) plan.hidden = true; }
+    if(muro && !datos.email){ muro.hidden = false; if(plan) plan.hidden = true; }
     pintarTestimonios(v);
     registrar(v);
     document.getElementById('r-titulo').textContent = t.titulo;
@@ -1397,31 +1555,13 @@ footer a{color:var(--gris)}
     });
     document.getElementById('r-nota').textContent = t.nota;
 
-    // ref para ManyChat: plandiag-vertical--jornada_horas_freno
-    // La parte de delante del '--' es el trigger (uno por vertical);
-    // lo de detrás es contexto para personalizar el mensaje.
-    // El enlace al DM NO se construye aqui: la edad todavia no esta confirmada.
-    // Se guarda lo necesario y lo monta abrirPlan(), que solo corre para mayores.
     VERT_ACTUAL = v;
-    CTX_ACTUAL  = [r[1]||'', r[2]||'', r[5]||''].join('_');
-    var btn = document.getElementById('btn-dm');
-    if(btn) btn.removeAttribute('data-url');
-
     ver('resultado');
   }
 
   // ===== FORMULARIO DE DATOS =====
-  // Acepta '@usuario', 'usuario', 'instagram.com/usuario' o la URL completa.
-  // Devuelve el usuario limpio en minusculas, o '' si no hay nada aprovechable.
-  function normalizaIG(v){
-    if(!v) return '';
-    var t = String(v).trim().toLowerCase();
-    t = t.replace(/^https?:\/\//, '').replace(/^www\./, '');
-    t = t.replace(/^instagram\.com\//, '').replace(/^ig\.me\/m\//, '');
-    t = t.split('?')[0].split('/')[0];
-    t = t.replace(/^@+/, '').replace(/[^a-z0-9._]/g, '');
-    if(t.length < 2 || t.length > 30) return '';
-    return t;
+  function emailValido(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(v || '').trim());
   }
 
   function marcar(id, mal){
@@ -1446,52 +1586,45 @@ footer a{color:var(--gris)}
     return 'mas_25';
   }
 
-  // ----- Paso final: edad, nombre y WhatsApp, con el plan al otro lado -----
+  // ----- Paso final: edad, email y WhatsApp, con el plan al otro lado -----
   document.getElementById('btn-datos').addEventListener('click', function(){
-    var nombre = document.getElementById('f-nombre').value.trim();
     var pref   = document.getElementById('f-pref').value;
     var tel    = document.getElementById('f-tel').value.replace(/[^0-9]/g,'');
     var ok     = document.getElementById('f-ok').checked;
-
-    var ig = normalizaIG(document.getElementById('f-ig').value);
+    var email  = document.getElementById('f-email').value.trim().toLowerCase();
 
     var edad = parseInt(document.getElementById('f-edad').value, 10);
     TRAMO = tramoDeEdad(edad);
     var v0 = marcar('c-edad', isNaN(edad) || edad < 8 || edad > 99);
-    var v1 = marcar('c-nombre', nombre.length < 2);
-    var vi = marcar('c-ig', !ig);
+    var ve = marcar('c-email', !emailValido(email));
     var v2 = marcar('c-tel', tel.length < 6 || tel.length > 15);
     var v3 = marcar('c-ok', !ok);
-    if(!(v0 && v1 && vi && v2 && v3)){
+    if(!(v0 && ve && v2 && v3)){
       evento('form_error', {donde:'final',
-        campo: (!v0 ? 'edad' : (!v1 ? 'nombre' : (!vi ? 'instagram' :
-               (!v2 ? 'telefono' : 'consentimiento'))))});
+        campo: (!v0 ? 'edad' : (!ve ? 'email' : (!v2 ? 'telefono' : 'consentimiento')))});
       return;
     }
-    datos.instagram = ig;
 
     datos.edad       = edad;
     datos.edad_tramo = TRAMO;
 
     // Bifurcacion. El descartado se corta AQUI, antes de guardarLead(): lo que
     // ha escrito se queda en su navegador y no llega a salir del movil.
-    if(noCualifica(TRAMO, r[3])){
+    if(noCualifica(TRAMO, r[6])){
       var porEdad = EDAD_DESCARTA.indexOf(TRAMO) !== -1;
       if(porEdad) evento('menor_edad', {tramo: TRAMO});
       evento('no_cualifica', {
         motivo: MODO_DESCARTE === 'Y' ? 'edad_y_capital' : (porEdad ? 'edad' : 'sin_capital'),
         tramo:  TRAMO,
-        valor:  r[3] || ''
+        valor:  r[6] || ''
       });
-      datos.nombre = ''; datos.telefono = ''; datos.instagram = ''; datos.edad = null;
-      var bdm = document.getElementById('btn-dm');
-      if(bdm) bdm.removeAttribute('data-url');
+      datos.telefono = ''; datos.email = ''; datos.edad = null;
       // Menor sin capital -> pantalla de "no es tu momento" con la formacion gratis
       if(porEdad && MODO_DESCARTE === 'O') ver('menor'); else irANoMomento();
       return;
     }
 
-    datos.nombre   = nombre;
+    datos.email    = email;
     datos.telefono = (pref === 'otro' ? '' : pref) + tel;
 
     guardarLead();
@@ -1502,8 +1635,6 @@ footer a{color:var(--gris)}
   function irANoMomento(){
     var a = document.getElementById('btn-video');
     if(a) a.setAttribute('href', VIDEO_DESCARTE);
-    var btn = document.getElementById('btn-dm');
-    if(btn) btn.removeAttribute('data-url');   // por si acaso: sin salida al DM
     ver('nomomento');
   }
 
@@ -1512,24 +1643,19 @@ footer a{color:var(--gris)}
   });
 
   function abrirPlan(){
-    // Solo se llega aqui con TRAMO validado y distinto de 'menos_18'
-    var btn = document.getElementById('btn-dm');
-    if(btn && VERT_ACTUAL && datos.edad_tramo && datos.edad_tramo !== 'menos_18'){
-      btn.setAttribute('data-url',
-        'https://ig.me/m/' + cuentaDestino() + '?ref=' + REF_BASE + '-' + VERT_ACTUAL +
-        '--' + CTX_ACTUAL + '--' + CODIGO);
-    }
     var muro = document.getElementById('r-muro');
     var plan = document.getElementById('r-plan');
     if(muro) muro.hidden = true;
     if(plan) plan.hidden = false;
     var kicker = document.querySelector('#p-resultado .kicker');
-    if(kicker) kicker.textContent = datos.nombre ? ('Tu camino, ' + datos.nombre) : 'Tu camino';
+    if(kicker) kicker.textContent = datos.nombre ? ('Tu camino, ' + pila()) : 'Tu camino';
+    var pt = document.getElementById('r-plan-tit');
+    if(pt) pt.textContent = datos.nombre ? (pila() + ', tus primeros 30 días') : 'Tus primeros 30 días';
     if(plan) plan.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
   // limpiar el aviso en cuanto corrigen, y avisar de que han empezado a rellenar
-  ['f-edad','f-nombre','f-ig','f-tel'].forEach(function(id){
+  ['f-edad','f-email','f-tel'].forEach(function(id){
     var el = document.getElementById(id);
     if(!el) return;
     el.addEventListener('input', function(){
@@ -1552,8 +1678,16 @@ footer a{color:var(--gris)}
           nombre:      datos.nombre || '',
           edad:        datos.edad || null,
           edad_tramo:  datos.edad_tramo || null,
-          instagram:   datos.instagram || '',
+          email:       datos.email || '',
           telefono:    datos.telefono || '',
+          vertical:    VERT_ACTUAL || calcular(),
+          situacion:   r[1] || null,     // ocupacion
+          punto:       r[2] || null,
+          preocupacion:r[3] || null,
+          perfil:      r[4] || null,
+          horas:       r[5] || null,
+          margen:      r[6] || null,     // capital
+          cuando:      r[7] || null,
           origen:   location.search || ''
         })
       }).catch(function(){});
@@ -1563,9 +1697,9 @@ footer a{color:var(--gris)}
   // ===== CIERRE DEL DIAGNÓSTICO =====
   function registrar(vertical){
     evento('resultado', {
-      vertical:  vertical,
-      situacion: r[1] || '', horas: r[2] || '', margen: r[3] || '',
-      talento:   r[4] || '', freno: r[5] || ''
+      vertical:     vertical,
+      ocupacion:    r[1] || '', punto: r[2] || '', preocupacion: r[3] || '',
+      perfil:       r[4] || '', horas: r[5] || '', capital: r[6] || '', cuando: r[7] || ''
     });
   }
 
@@ -1577,9 +1711,13 @@ footer a{color:var(--gris)}
     if(!capa) return function(){};
 
     var ETIQUETAS = {
-      visita:'Entran en la página', clic_empezar:'Pulsan "Empezar"',
+      visita:'Entran en la página', clic_empezar:'Pulsan "Empezar" (antiguo)',
+      optin_nombre:'Escriben su nombre',
       optin:'Dejan sus datos', pregunta:'Responden preguntas',
-      resultado:'Llegan al resultado', pide_dm:'Piden el plan por DM',
+      resultado:'Llegan al resultado', pide_dm:'Piden el plan por DM (antiguo)',
+      recibe_plan:'Reciben el plan (PDF)', descarga_pdf:'Descargan el PDF',
+      a_calendly:'Entran al proceso (Calendly)', proceso_abierto:'Se les desbloquea el proceso',
+      tp_final:'Abren Trustpilot', yt_proceso:'YouTube (proceso)',
       form_inicio:'Empiezan el formulario',
       form_error:'Fallo de validación',
       no_cualifica:'Descartados', clic_video_descarte:'Ven el vídeo de descarte',
@@ -1588,13 +1726,23 @@ footer a{color:var(--gris)}
       yt_hero:'YouTube (inicio)', yt_final:'YouTube (resultado)',
       web_hero:'Web (inicio)', web_final:'Web (resultado)', web_logo:'Web (logo)'
     };
-    var PREGUNTAS = ['Su día','Sus horas','Su margen','Lo suyo','Su freno'];
+    var PREGUNTAS = ['Su día','Su punto de partida','Su preocupación','Lo suyo','Sus horas','Su margen','Su plazo'];
     var VERTICALES = {ventas:'Ventas', ia:'Agencia de IA', ecom:'Ecommerce'};
     var TRAMOS = {menos_16:'Menos de 16', '16_17':'16 o 17', menos_18:'Menor de 18',
                   '18_25':'18 a 25', mas_25:'Más de 25'};
-    var TITULOS = ['¿A qué le dedica el día?','¿Cuánto tiempo libre tiene?',
-                   '¿De cuánto puede disponer?','¿Qué se le da mejor?','¿Qué le ha frenado?'];
+    var TITULOS = ['¿A qué se dedica?','¿En qué punto está?','¿Qué le preocupa?',
+                   '¿Qué trabajo le encaja?','¿Cuántas horas tiene?','¿Con cuánto empieza?','¿Para cuándo?'];
     var VALORES = {
+      // preguntas actuales (7)
+      completa:'Jornada completa', media_est:'Media jornada y estudia', emprende:'Emprendedor',
+      estudia:'Estudia a tiempo completo',
+      probando:'Probó cosas sin resultados', menos2k:'Factura < 2.000 €/mes', mas2k:'Factura > 2.000 €/mes',
+      no_llego:'No gana para vivir como quiere', justo:'Gana lo justo, quiere salir',
+      complemento:'Busca un complemento', curioso:'Solo quiere aprender',
+      ventas:'Hablar y vender', ia:'Montar sistemas con IA', ecom:'Vender producto', abierto:'Lo que antes funcione',
+      menos5:'Menos de 5 h', '5a10':'5 a 10 h', '10a20':'10 a 20 h', mas20:'Más de 20 h',
+      ya:'Cuanto antes', mes:'En 3 meses', meses:'Este año', mirando:'Sin fecha',
+      // preguntas antiguas (5), para leer leads viejos
       jornada:'Jornada completa', media:'Media jornada', trabajo_estudio:'Trabaja y estudia',
       estudio:'Estudia', nada:'Ahora mismo nada',
       rotativo:'Turnos rotativos', noches:'Alguna hora de noche',
@@ -1644,7 +1792,7 @@ footer a{color:var(--gris)}
 
     function pintarFuentes(fs){
       var t = document.getElementById('panel-fuentes');
-      t.innerHTML = '<tr><th>Fuente</th><th>Visitas</th><th>Leads</th><th>Piden DM</th><th>% empezar</th><th>% global</th></tr>';
+      t.innerHTML = '<tr><th>Fuente</th><th>Visitas</th><th>Leads</th><th>Reciben plan</th><th>% empezar</th><th>% global</th></tr>';
       if(!fs || !fs.length){
         t.innerHTML += '<tr><td colspan="6" style="color:var(--gris)">Sin datos todavia.</td></tr>';
         return;
@@ -1699,11 +1847,12 @@ footer a{color:var(--gris)}
       // KPIs
       var kpis = [
         ['Visitas', visitas, null],
-        ['Pulsan empezar', ev.clic_empezar || 0, pct(ev.clic_empezar || 0, visitas)],
+        ['Escriben su nombre', (ev.optin_nombre || 0) + (ev.clic_empezar || 0), pct((ev.optin_nombre || 0) + (ev.clic_empezar || 0), visitas)],
         ['Contestan la 1.ª', sesionesPregunta(d, 1), pct(sesionesPregunta(d, 1), visitas)],
         ['Llegan al resultado', ev.resultado || 0, pct(ev.resultado || 0, visitas)],
         ['Dejan sus datos', ev.optin || 0, pct(ev.optin || 0, visitas)],
-        ['Piden el plan por DM', ev.pide_dm || 0, pct(ev.pide_dm || 0, visitas)],
+        ['Reciben el plan', (ev.recibe_plan || 0) + (ev.pide_dm || 0), pct((ev.recibe_plan || 0) + (ev.pide_dm || 0), visitas)],
+        ['Van a Calendly', ev.a_calendly || 0, pct(ev.a_calendly || 0, visitas)],
         ['Leads guardados', LEADS.length, null]
       ];
       var ck = document.getElementById('panel-kpis');
@@ -1719,12 +1868,14 @@ footer a{color:var(--gris)}
       // embudo
       barras(document.getElementById('panel-embudo'), [
         [ETIQUETAS.visita, visitas],
-        [ETIQUETAS.clic_empezar, ev.clic_empezar || 0],
+        [ETIQUETAS.optin_nombre, (ev.optin_nombre || 0) + (ev.clic_empezar || 0)],
         ['Contestan la 1.ª pregunta', sesionesPregunta(d, 1)],
-        ['Contestan la 5.ª pregunta', sesionesPregunta(d, 5)],
+        ['Contestan la 7.ª pregunta', sesionesPregunta(d, 7)],
         [ETIQUETAS.resultado, ev.resultado || 0, {t:'paso', v:'resultado'}],
         [ETIQUETAS.optin, ev.optin || 0, {t:'paso', v:'optin'}],
-        [ETIQUETAS.pide_dm, ev.pide_dm || 0, {t:'paso', v:'pide_dm'}]
+        [ETIQUETAS.recibe_plan, (ev.recibe_plan || 0) + (ev.pide_dm || 0), {t:'paso', v:'pide_dm'}],
+        [ETIQUETAS.descarga_pdf, ev.descarga_pdf || 0],
+        [ETIQUETAS.a_calendly, ev.a_calendly || 0]
       ], visitas);
 
       // edad
@@ -1767,7 +1918,7 @@ footer a{color:var(--gris)}
       // preguntas
       var cp = document.getElementById('panel-preguntas');
       cp.innerHTML = '';
-      for(var n = 1; n <= 5; n++){
+      for(var n = 1; n <= 7; n++){
         var filas = (d.respuestas || []).filter(function(x){ return String(x.n) === String(n); });
         var base = filas.reduce(function(a,b){ return a + b.total; }, 0);
         var h = document.createElement('h5');
@@ -1793,7 +1944,7 @@ footer a{color:var(--gris)}
     // En qué punto se quedó cada lead
     function estado(l){
       var hechas = l.respuestas ? Object.keys(l.respuestas).length : 0;
-      if(l.pidio_dm) return {c:'pidio', t:'Pidió el plan', k:'hecho'};
+      if(l.pidio_dm) return {c:'pidio', t:'Recibió el plan', k:'hecho'};
       if(l.vertical) return {c:'sinpedir', t:'Vio el plan, no lo pidió', k:'calor'};
       if(hechas > 0) return {c:'corto', t:'Se cayó en la ' + (hechas + 1) + '.ª pregunta', k:'medio'};
       return {c:'corto', t:'Solo dejó sus datos', k:'frio'};
@@ -1887,7 +2038,7 @@ footer a{color:var(--gris)}
 
       var lista = filtrados();
       var t = document.getElementById('panel-tabla');
-      t.innerHTML = '<tr><th>Fecha</th><th>Nombre</th><th>Edad</th><th>Instagram</th><th>WhatsApp</th><th>Vertical</th><th>Fuente</th><th>Estado</th><th>Asignado</th></tr>';
+      t.innerHTML = '<tr><th>Fecha</th><th>Nombre</th><th>Edad</th><th>Email</th><th>WhatsApp</th><th>Vertical</th><th>Fuente</th><th>Estado</th><th>Asignado</th></tr>';
       if(!lista.length){
         t.innerHTML += '<tr><td colspan="9" style="color:var(--gris)">Ningún lead ' +
                        (SEG ? 'en este segmento con el filtro elegido.' : 'en este filtro.') + '</td></tr>';
@@ -1899,7 +2050,7 @@ footer a{color:var(--gris)}
         [new Date(l.creado_en).toLocaleDateString('es-ES') + ' ' +
            new Date(l.creado_en).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}),
          l.nombre, (l.edad || TRAMOS[l.edad_tramo] || '—'),
-         (l.instagram ? '@' + l.instagram : '—'), l.telefono,
+         (l.email || (l.instagram ? '@' + l.instagram : '—')), l.telefono,
          VERTICALES[l.vertical] || '—',
          l.fuente || '—'].forEach(function(c){
           var td = document.createElement('td');
@@ -1967,14 +2118,14 @@ footer a{color:var(--gris)}
         pares.appendChild(d);
       }
 
-      parLink('Instagram',
-        l.instagram ? '@' + l.instagram : '—',
-        l.instagram ? 'https://instagram.com/' + l.instagram : null);
-      par('WhatsApp', l.telefono);
       par('Correo', l.email);
+      par('WhatsApp', l.telefono);
+      if(l.instagram){
+        parLink('Instagram', '@' + l.instagram, 'https://instagram.com/' + l.instagram);
+      }
       par('Vertical', VERTICALES[l.vertical] || 'No terminó');
       par('Estado', estado(l).t);
-      par('Pidió el plan', l.pidio_dm ? 'Sí' : 'No');
+      par('Recibió el plan', l.pidio_dm ? 'Sí' : 'No');
       par('Fuente', l.fuente);
       if(l.manychat_sid){
         parLink('Abrir en ManyChat', l.manychat_sid,
@@ -1982,7 +2133,7 @@ footer a{color:var(--gris)}
             ? URL_MANYCHAT.replace('{PID}', l.manychat_pid).replace('{SID}', l.manychat_sid)
             : null));
       }
-      for(var n = 1; n <= 5; n++){
+      for(var n = 1; n <= 7; n++){
         par(TITULOS[n-1], (l.respuestas && l.respuestas[n]) ? leible(l.respuestas[n]) : 'Sin responder');
       }
 
@@ -2157,12 +2308,44 @@ footer a{color:var(--gris)}
   })();
 
   // ===== NAVEGACIÓN =====
-  document.querySelectorAll('[data-ir]').forEach(function(b){
-    b.addEventListener('click', function(){
-      if(this.dataset.ir === '1') evento('clic_empezar');
-      historial.push(actual); ver(this.dataset.ir);
+  var TXT = {};   // texto legible de cada respuesta, para personalizar
+
+  function pila(){ return (datos.nombre || '').split(' ')[0]; }
+
+  // Titulos de pregunta que llevan el nombre delante
+  var PERSONALIZA = {
+    1: '¿a qué te dedicas actualmente?',
+    3: '¿cuál es tu mayor preocupación a día de hoy?',
+    5: '¿cuántas horas a la semana puedes dedicarle de verdad?',
+    7: '¿cuándo te gustaría resolver esto?'
+  };
+  function personalizarTitulos(){
+    var n = pila();
+    Object.keys(PERSONALIZA).forEach(function(k){
+      var h = document.getElementById('t-' + k);
+      if(!h) return;
+      var base = PERSONALIZA[k];
+      h.textContent = n ? (n + ', ' + base) : (base.charAt(0).toUpperCase() + base.slice(1));
     });
+  }
+
+  function empezar(){
+    var inp = document.getElementById('f-nombre');
+    var nombre = inp.value.trim().replace(/\s+/g, ' ');
+    if(!marcar('c-nombre', nombre.length < 2)){ inp.focus(); return; }
+    datos.nombre = nombre;
+    personalizarTitulos();
+    evento('optin_nombre');
+    historial.push(actual); ver('1');
+  }
+  document.getElementById('btn-nombre').addEventListener('click', empezar);
+  document.getElementById('f-nombre').addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); empezar(); }
   });
+  document.getElementById('f-nombre').addEventListener('input', function(){
+    document.getElementById('c-nombre').classList.remove('mal');
+  });
+
   document.querySelectorAll('[data-atras]').forEach(function(b){
     b.addEventListener('click', function(){ ver(this.dataset.atras); });
   });
@@ -2171,14 +2354,15 @@ footer a{color:var(--gris)}
     b.addEventListener('click', function(){
       var q = parseInt(this.dataset.q, 10);
       r[q] = this.dataset.v;
+      TXT[q] = this.dataset.txt || '';
       evento('pregunta', {n: q, valor: this.dataset.v});
-      if(q < 5){ ver(String(q+1)); return; }
+      if(q < 7){ ver(String(q+1)); return; }
 
       // Con MODO_DESCARTE = 'Y' hace falta la edad, que se pide en el
       // formulario, asi que el corte no puede decidirse todavia. Con 'O'
       // el capital solo ya basta y se corta aqui, sin pedir ningun dato.
-      if(MODO_DESCARTE === 'O' && CAPITAL_DESCARTA.indexOf(r[3]) !== -1){
-        evento('no_cualifica', {motivo: 'sin_capital', valor: r[3]});
+      if(MODO_DESCARTE === 'O' && CAPITAL_DESCARTA.indexOf(r[6]) !== -1){
+        evento('no_cualifica', {motivo: 'sin_capital', valor: r[6]});
         irANoMomento();
         return;
       }
@@ -2190,47 +2374,202 @@ footer a{color:var(--gris)}
     a.addEventListener('click', function(){ evento(this.dataset.ev); });
   });
 
-  // ===== MENSAJE LISTO PARA PEGAR =====
-  // Instagram no permite prerrellenar el texto del DM, así que lo copiamos
-  // al portapapeles y el lead solo tiene que pegar.
-  var PLANTILLAS = {
-    ventas: 'Hola Toni, quiero mi entregable de Ventas',
-    ia:     'Hola Toni, quiero mi entregable de Inteligencia Artificial',
-    ecom:   'Hola Toni, quiero mi entregable de Ecommerce'
-  };
+  // ===== PANTALLA FINAL: PDF + CUENTA ATRÁS A CALENDLY =====
+  function enlaceCalendly(v){
+    var p = new URLSearchParams();
+    if(datos.nombre)   p.set('name',  datos.nombre);
+    if(datos.email)    p.set('email', datos.email);
+    if(datos.telefono) p.set('a1',    datos.telefono);
+    p.set('utm_source',   'diagnostico');
+    p.set('utm_medium',   'plan30');
+    p.set('utm_campaign', v || '');
+    p.set('utm_term', [v, r[1], r[2], r[3], r[4], r[5], r[6], r[7], datos.edad_tramo].map(function(x){ return x || ''; }).join('|'));
+    return CALENDLY + '?' + p.toString();
+  }
 
-  document.getElementById('btn-dm').addEventListener('click', function(){
-    var v = calcular();
-    evento('pide_dm', {vertical: v, codigo: CODIGO});
+  function textoFinal(v){
+    var n = pila() || 'Oye';
+    var t = TEXTOS[v] ? TEXTOS[v].titulo : '';
+    var trozos = [];
+    if(TXT[1]) trozos.push('estás ' + TXT[1]);
+    if(TXT[5]) trozos.push('puedes dedicarle ' + TXT[5] + ' a la semana');
+    if(TXT[6]) trozos.push('arrancas con ' + TXT[6]);
+    var retrato = trozos.length
+      ? trozos.slice(0, -1).join(', ') + (trozos.length > 1 ? ' y ' : '') + trozos[trozos.length - 1]
+      : '';
+    return n + ', este es el Nivel 01 del roadmap de ' + t + ': qué hacer, en qué orden y cuándo pasas al siguiente nivel.' +
+      (retrato ? ' Está pensado para tu situación: ' + retrato + (TXT[7] ? ', y ' + TXT[7] : '') + '.' : '') +
+      ' En la llamada lo repasamos contigo paso a paso.';
+  }
 
-    var texto = PLANTILLAS[v];
-    document.getElementById('copia-msg').textContent = texto;
-    document.getElementById('copia-ir').setAttribute('data-url', this.getAttribute('data-url') || '');
+  function cargarPDF(url){
+    var caja = document.getElementById('pdf-caja');
+    caja.innerHTML = '';
+    if(!url){ caja.style.display = 'none'; return; }
+    caja.style.display = '';
+    var f = document.createElement('iframe');
+    f.src = url + '#toolbar=0&navpanes=0&view=FitH';
+    f.title = 'Tu roadmap en PDF';
+    caja.appendChild(f);
+  }
 
-    var ok = document.getElementById('copia-ok');
-    ok.textContent = '';
-    try{
-      navigator.clipboard.writeText(texto).then(function(){
-        ok.textContent = 'Mensaje copiado ✓';
-      }).catch(function(){
-        ok.textContent = 'Copia el mensaje de arriba antes de continuar.';
-      });
-    }catch(e){
-      ok.textContent = 'Copia el mensaje de arriba antes de continuar.';
+  var CUENTA_TIC = null;
+
+  // ---- Reseñas de Trustpilot (resúmenes; fuente: es.trustpilot.com/review/lathosclub.com)
+  var RESENAS = [
+    ['Iñaki','Ago 2026',5,'Llegó sin tener claro qué camino tomar y hoy genera ingresos con frecuencia.'],
+    ['Faustino','Ago 2026',5,'Llevaba años intentando emprender y perdiéndose entre tanta información, hasta que encontró un entorno que iba en la misma dirección.'],
+    ['Gerard','Ago 2026',5,'Dice que le ha ayudado a despegar y a acercarse a sus objetivos.'],
+    ['Adrián Ros','Ago 2026',5,'Destaca la comunidad y las clases en directo, donde le resuelven las dudas del día a día.'],
+    ['Kevin Reyes','Ago 2026',5,'Valora aprender en videollamada con gente de distintas edades, porque de cada clase sale con algo nuevo.'],
+    ['Daniel SM','Ago 2026',5,'Subraya que no es solo un curso de ecommerce: la mentalidad y el acompañamiento pesan igual.'],
+    ['Izan Macipe','Ago 2026',5,'Mes y medio dentro y lo describe como el mayor paso que ha dado.'],
+    ['Cristofer Hernández','Ago 2026',5,'Le explican bien la rama que ha escogido y están atentos a quien necesita ayuda.'],
+    ['Marcos Díaz','Ago 2026',5,'Lo recomienda a quien quiere emprender y no tiene claro cómo hacerlo.'],
+    ['Cata','Ago 2026',5,'Entró buscando un cambio y mejoró tanto su calidad de vida como su forma de trabajar.'],
+    ['Eric Gurlea','Ago 2026',5,'Se queda con los mentores y con rodearse de gente que piensa parecido.'],
+    ['Lucas','Ago 2026',5,'Cambió su mentalidad al rodearse de gente con la misma cabeza y valora mucho las llamadas.'],
+    ['Juan Hernández','Ago 2026',5,'Le llegó el mensaje de que las cosas se consiguen pasando por muchas adversidades.'],
+    ['Javichu','Ago 2026',5,'Entró para ver la vida de otra manera y está avanzando como persona.'],
+    ['Sorin Marcu','Ago 2026',5,'Buena formación y buen entorno; su única pega es que le gustaría que hubiera más eventos.'],
+    ['Alan Nicolaie','Ago 2026',5,'Acaba de entrar y ya destaca el trabajo que hay detrás y la ayuda que le ofrecen.'],
+    ['María RN','Ago 2026',4,'En dos meses nota el cambio en confianza y responsabilidad; valora el formato participativo.'],
+    ['Jesús','Ago 2026',5,'Cuenta que en menos de cinco meses cambió su situación económica, física y mental.'],
+    ['Carlos Pulido','Ago 2026',5,'Le impulsó a tomar las riendas y hoy es mentor de mentalidad.'],
+    ['Isaías Marruffo','Jul 2026',5,'Buscaba ganar valor en el mercado laboral y lo llama una de las mejores decisiones de su vida.'],
+    ['Iván Pérez Casado','Jul 2026',5,'Dice que le dieron las herramientas para llegar a ser quien quería ser, y que volvería a entrar sin dudarlo.'],
+    ['Rubén','Jul 2026',5,'Entró con la mosca detrás de la oreja por tanto vendehúmos suelto, y se encontró un cambio de mentalidad desde el primer día.'],
+    ['Iscel Morales','Jul 2026',5,'Buscaba un entorno de gente más lista que él y ver a chavales de su edad con resultados le encendió la mecha.'],
+    ['Roger Bares','Jul 2026',5,'Le sorprendió la comunidad y que las formaciones se entiendan sin partir de base en el sector.'],
+    ['Juan Francisco','Jul 2026',5,'Le ha servido para aclararse por dentro y por fuera; insiste en que no es una formación cualquiera.'],
+    ['Catalin Caramet','Jul 2026',5,'Cuenta que dejó de solo soñar y empezó a actuar al poco de entrar.'],
+    ['Gabriel Negoescu','Jul 2026',5,'A los pocos días ya destaca el contenido, las personas y el entorno.'],
+    ['Judit Moreno','Jul 2026',5,'Valora que se trabaje la mentalidad y la salud a la vez que las habilidades y el negocio.'],
+    ['Cayetana Raya','Jul 2026',5,'Para ella lo mejor son los mentores y una comunidad en la que todos se apoyan.'],
+    ['Philip','Jul 2026',5,'Lo describe como una familia de gente de sitios distintos que crece junta.'],
+    ['Carlos A. Lizarazo','Jul 2026',5,'Lleva poco, pero empezar con una comunidad que le guía paso a paso no le parece comparable a nada.'],
+    ['Eric Gallego','Jul 2026',5,'Se queda con la comunidad, la atención y el acompañamiento.'],
+    ['Yeray Peñalver','Jul 2026',5,'Dice sentirse a gusto con todos y seguir avanzando hacia sus objetivos.'],
+    ['Ángel','Ago 2026',5,'Destaca el ambiente de crecimiento y el nivel de las clases de mentalidad y de su área.'],
+    ['Tico','Jul 2026',5,'Con diez días dentro ya nota que le está cambiando la vida.'],
+    ['Jonathan','Jul 2026',5,'Casi un año dentro. Avisa de que solo funciona si pones el esfuerzo: comprar el curso y esperar no sirve.'],
+    ['Salvador S. Ros','Jul 2026',5,'Tres años en la academia y sin una sola queja.'],
+    ['Darío Jaén','Jul 2026',5,'Dice que si metes foco puedes aprender y facturar en varios tipos de negocio, y destaca las llamadas diarias.'],
+    ['Alejandro Ruiz','Jul 2026',5,'Tenía claro lo que quería hacer y aquí encontró gente igual que él con quien apoyarse mutuamente.'],
+    ['Diego Corrio','Jul 2026',5,'Habla de gente remando en la misma dirección, compartiendo aciertos y errores.'],
+    ['Sergio Chamorro','Jul 2026',5,'Le impresiona la cantidad de información y que siempre haya alguien que te ayude al instante.'],
+    ['Josu Ss','Jul 2026',5,'Se queda con el acompañamiento y con la persona en la que puedes llegar a convertirte.'],
+    ['Unai Valls','Jul 2026',5,'Menciona mentalidad, biohacking y dinero como los tres frentes que le ha ayudado a mejorar.'],
+    ['Adrián','Jul 2026',5,'Entró sin ningún conocimiento y desde el primer día lo animaron y estuvieron pendientes.'],
+    ['Pablo López Alonso','Feb 2026',5,'Destaca la mentalidad, las clases de ecommerce con el mentor y la vibra de la comunidad.'],
+    ['Alexander P.-O.','Nov 2025',5,'Le parece que la formación tiene un valor enorme, aunque cree que deberían pulir la web.'],
+    ['Skye Omen','Nov 2025',5,'Lo resume en gente comprometida que se ayuda entre sí, y da por hecho que sus objetivos son cuestión de tiempo.'],
+    ['Silvio Zhou','Jul 2026',4,'Valora la variedad de mentores, cada uno experto en lo suyo.'],
+    ['Nicolás Martín','Jul 2026',4,'Le parece todo muy bien hecho y con cariño.'],
+    ['Mauro Vilches','Mar 2025',4,'Nota el crecimiento en la comunidad, aunque echa en falta más networking en Norteamérica.']
+  ];
+  var FINAL_PINTADO = false;
+
+  function pintarPruebas(){
+    if(FINAL_PINTADO) return;
+    FINAL_PINTADO = true;
+    var ops = document.getElementById('tp-ops');
+    RESENAS.forEach(function(x){
+      var d = document.createElement('div');
+      d.className = 'tp-op';
+      var e = document.createElement('div'); e.className = 'e';
+      e.innerHTML = '\u2605'.repeat(x[2]) + '<span style="color:#CFD4DD">' + '\u2605'.repeat(5 - x[2]) + '</span>';
+      var p = document.createElement('p'); p.textContent = x[3];
+      var q = document.createElement('div'); q.className = 'q'; q.textContent = x[0] + ' \u00b7 ' + x[1];
+      d.appendChild(e); d.appendChild(p); d.appendChild(q);
+      ops.appendChild(d);
+    });
+    document.querySelectorAll('.tp-cifra .n').forEach(function(el){
+      var fin = parseInt(el.dataset.n, 10), suf = el.dataset.suf || '', t0 = null, dur = 2200;
+      function paso(t){
+        if(!t0) t0 = t;
+        var pr = Math.min((t - t0)/dur, 1);
+        el.textContent = Math.round(fin * (1 - Math.pow(1 - pr, 3))) + suf;
+        if(pr < 1) requestAnimationFrame(paso);
+      }
+      requestAnimationFrame(paso);
+    });
+    // vídeos: primero los de su vertical, después el resto
+    var rej = document.getElementById('rejilla-final');
+    var v = VERT_ACTUAL;
+    var suyos = ALUMNOS.filter(function(a){ return a[3] === v; });
+    var resto = ALUMNOS.filter(function(a){ return a[3] !== v; });
+    suyos.concat(resto).forEach(function(a){ rej.appendChild(tarjeta(a)); });
+  }
+
+  function irAFinal(){
+    var v = VERT_ACTUAL || calcular();
+    var url = enlaceCalendly(v);
+    evento('recibe_plan', {vertical: v});
+
+    document.getElementById('fin-eyebrow').textContent = 'Roadmap operativo · Nivel 01 de 3 · ' + (TEXTOS[v] ? TEXTOS[v].titulo : '');
+    document.getElementById('fin-titulo').textContent = pila() ? (pila() + ', aquí tienes tu roadmap') : 'Aquí tienes tu roadmap';
+    document.getElementById('fin-texto').textContent = textoFinal(v);
+
+    var cal = document.getElementById('btn-calendly');
+    cal.href = url;
+    cal.onclick = function(){ evento('a_calendly', {vertical: v, como: 'boton'}); };
+
+    cargarPDF(PDF[v]);
+    pintarPruebas();
+    ver('final');
+
+    // cuenta atrás: al llegar a 0 se desbloquea "Entrar al proceso de selección"
+    var caja = document.getElementById('cuenta');
+    var bloq = document.getElementById('btn-bloqueado');
+    var reloj = document.getElementById('reloj');
+    var num = document.getElementById('cuenta-n');
+    var an  = document.getElementById('cuenta-anillo');
+    var tit = document.getElementById('cuenta-tit');
+    var sub = document.getElementById('cuenta-sub');
+
+    function desbloquear(){
+      bloq.hidden = true;
+      cal.hidden = false;
+      caja.classList.add('lista');
+      caja.onclick = function(e){
+        if(e.target.closest('#btn-calendly')) return;   // el enlace ya lo hace
+        evento('a_calendly', {vertical: v, como: 'caja'});
+        window.open(url, '_blank', 'noopener');
+      };
+      num.textContent = '\u2713';
+      tit.textContent = pila() ? ('Acceso desbloqueado, ' + pila()) : 'Acceso desbloqueado';
+      sub.textContent = 'Reserva tu llamada con el equipo y repasamos tu plan contigo.';
+      evento('proceso_abierto', {vertical: v});
     }
 
-    document.getElementById('copia').classList.add('on');
-  });
+    if(CUENTA_TIC){ clearInterval(CUENTA_TIC); CUENTA_TIC = null; }
+    caja.classList.remove('lista');
+    caja.onclick = null;
+    if(!SEGUNDOS_CALENDLY){ caja.style.display = 'none'; desbloquear(); return; }
 
-  document.getElementById('copia-ir').addEventListener('click', function(){
-    evento('abre_ig', {codigo: CODIGO});
-    var u = this.getAttribute('data-url');
-    if(u) window.location.href = u;
-  });
+    var total = SEGUNDOS_CALENDLY, pasado = 0;
+    bloq.hidden = false; cal.hidden = true;
+    num.textContent = total; reloj.textContent = total;
+    tit.textContent = 'Abriendo tu proceso de selección';
+    sub.textContent = 'Lathos no es para todo el mundo. En ' + total + ' segundos desbloqueamos el acceso para que reserves tu llamada.';
+    var VUELTA = 2 * Math.PI * 24;
+    an.style.strokeDasharray  = VUELTA;
+    an.style.strokeDashoffset = VUELTA;
+    an.style.transition = 'none';
+    requestAnimationFrame(function(){
+      an.style.transition = 'stroke-dashoffset ' + total + 's linear';
+      an.style.strokeDashoffset = 0;
+    });
+    CUENTA_TIC = setInterval(function(){
+      pasado++;
+      var q = Math.max(total - pasado, 0);
+      num.textContent = q; reloj.textContent = q;
+      if(pasado >= total){ clearInterval(CUENTA_TIC); CUENTA_TIC = null; desbloquear(); }
+    }, 1000);
+  }
 
-  document.getElementById('copia-cerrar').addEventListener('click', function(){
-    document.getElementById('copia').classList.remove('on');
-  });
+  document.getElementById('btn-plan').addEventListener('click', irAFinal);
 })();
 </script>
 </body>
