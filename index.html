@@ -571,7 +571,27 @@ h2{
 .aviso p{font-size:15px;color:var(--gris)}
 
 /* ---------- nombre en portada ---------- */
-.nombre-caja{max-width:420px;margin:0 auto 4px}
+#r-plan{position:relative}
+#r-plan.borroso .bloque{filter:blur(6px);pointer-events:none;user-select:none;opacity:.85}
+#r-plan .velo{
+  display:none;position:absolute;inset:0;z-index:2;align-items:center;justify-content:center;
+}
+#r-plan.borroso .velo{display:flex}
+#r-plan .velo span{
+  background:var(--negro);color:var(--blanco);font-size:12px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;padding:10px 16px;border-radius:999px;
+}
+.confianza{
+  display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
+  font-size:13.5px;color:var(--gris);margin:-6px 0 22px;
+}
+.confianza b{color:var(--tinta)}
+.confianza .estrellas i{width:16px;height:16px;font-size:10px}
+.pill-tiempo{
+  display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--azul);background:#EEF2FF;border-radius:999px;padding:6px 12px;margin:0 0 12px;
+}
+.nombre-caja{max-width:420px;margin:0 auto 4px;text-align:center}
 .nombre-caja .error{text-align:center}
 .nombre-caja .campo{margin-bottom:10px;text-align:left}
 .nombre-caja input{text-align:center;font-size:17px;padding:18px 16px}
@@ -606,6 +626,7 @@ h2{
 .cuenta-atras .cta.bloqueada b{background:rgba(255,255,255,.16);color:var(--blanco);border-color:transparent}
 #p-final .alumnos-tit,#p-final .ayuda,#p-final .eyebrow,#p-final h2{text-align:center;margin-left:auto;margin-right:auto}
 #p-final .ayuda{max-width:60ch}
+#fin-plan{margin-top:22px;text-align:left}
 #p-final h2{text-wrap:balance}
 .cuenta-anillo{position:relative;flex:0 0 auto;width:56px;height:56px}
 .cuenta-anillo svg{width:56px;height:56px;transform:rotate(-90deg)}
@@ -760,11 +781,6 @@ footer a{color:var(--gris)}
       <h5>Paso a paso</h5>
       <div class="barras" id="panel-embudo"></div>
 
-      <p class="nota-barras"><b>Ojo con las fechas.</b> El orden del embudo cambió:
-      antes el formulario iba justo después de "Empezar" y ahora va al final, después
-      del resultado. Los datos anteriores al cambio siguen contados con el orden viejo,
-      así que «Dejan sus datos» puede salir por encima de «Llegan al resultado» hasta
-      que se renueve la muestra.</p>
 
       <h5>Fuente del trafico</h5>
       <div class="tabla-caja"><table class="tablita" id="panel-fuentes"></table></div>
@@ -843,12 +859,18 @@ footer a{color:var(--gris)}
   <!-- HERO -->
   <section class="pantalla activa" id="p-hero">
     <p class="eyebrow">Diagnóstico gratuito</p>
-    <h1>Recibe gratis tu plan para conseguir tu primer cliente... <em>sin dejar tu trabajo</em></h1>
-    <p class="bajada">7 preguntas, 2 minutos. El plan se calcula sobre las horas que tienes de verdad, no sobre las que te gustaría tener.</p>
+    <h1>Tu plan para conseguir tu primer cliente <em>sin dejar tu trabajo</em></h1>
+    <p class="bajada">Calculado sobre las horas que tienes de verdad, no sobre las que te gustaría tener.</p>
+
+    <div class="confianza" aria-label="Valoraciones">
+      <span class="estrellas"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span>
+      <span><b>4,6</b> en Trustpilot · +1.000 alumnos formados</span>
+    </div>
 
     <div class="nombre-caja">
+      <p class="pill-tiempo">7 preguntas · 2 minutos · gratis</p>
       <div class="campo" id="c-nombre">
-        <input type="text" id="f-nombre" autocomplete="given-name" placeholder="¿Cómo te llamas?" maxlength="60">
+        <input type="text" id="f-nombre" autocomplete="given-name" placeholder="¿Cómo te llamas?" maxlength="60" autofocus>
         <span class="error">Escribe tu nombre para empezar.</span>
       </div>
       <button class="cta" id="btn-nombre">Empecemos</button>
@@ -1004,7 +1026,7 @@ footer a{color:var(--gris)}
 
     <div class="muro" id="r-muro">
       <h4 id="r-muro-tit">Tu plan de 30 días está listo</h4>
-      <p class="ayuda">Rellena esto y lo abrimos aquí mismo. Te damos también el roadmap en PDF para que no lo pierdas.</p>
+      <p class="ayuda">Tres datos y lo abrimos aquí mismo, con el roadmap en PDF de tu camino.</p>
 
       <div class="formu">
         <div class="campo" id="c-edad">
@@ -1048,25 +1070,19 @@ footer a{color:var(--gris)}
           <span class="error">Pon un número de teléfono válido.</span>
         </div>
 
-        <label class="consent" id="c-ok">
-          <input type="checkbox" id="f-ok">
-          <span>Acepto que Lathos me contacte por WhatsApp o email para enviarme mi plan y contenido relacionado. Puedo darme de baja cuando quiera.</span>
-        </label>
-
         <button class="cta" id="btn-datos">Ver mi plan de 30 días</button>
-        <p class="aviso-privacidad">Tus datos no se comparten con terceros.</p>
+        <p class="aviso-privacidad">Al continuar aceptas que Lathos te contacte por WhatsApp o email para enviarte tu plan y contenido relacionado. Sin spam, te das de baja cuando quieras. Tus datos no se comparten con terceros.</p>
       </div>
     </div>
 
-    <div id="r-plan" hidden>
+    <div id="r-plan" class="borroso">
+      <div class="velo" id="r-velo"><span>Se desbloquea con tu email</span></div>
       <div class="bloque">
         <h4 id="r-plan-tit">Tus primeros 30 días</h4>
         <ul class="lista" id="r-pasos"></ul>
         <p class="nota" id="r-nota"></p>
       </div>
 
-      <button class="cta azul" id="btn-plan">Recibir mi plan</button>
-      <p class="pie-cta">Te abrimos el roadmap operativo de tu camino y desbloqueamos el proceso de selección.</p>
     </div>
 
     <section class="alumnos">
@@ -1103,6 +1119,12 @@ footer a{color:var(--gris)}
         <span class="cta bloqueada" id="btn-bloqueado">Entrar al proceso de selección <b id="reloj">10</b></span>
         <a class="cta blanco" id="btn-calendly" href="#" target="_blank" rel="noopener" hidden>Entrar al proceso de selección →</a>
       </div>
+    </div>
+
+    <div class="bloque" id="fin-plan">
+      <h4 id="fin-plan-tit">Tus primeros 30 días</h4>
+      <ul class="lista" id="fin-pasos"></ul>
+      <p class="nota" id="fin-nota"></p>
     </div>
 
     <section class="tp">
@@ -1541,7 +1563,10 @@ footer a{color:var(--gris)}
     if(muroTit) muroTit.textContent = datos.nombre ? (pila() + ', tu plan de 30 días está listo') : 'Tu plan de 30 días está listo';
     var muro = document.getElementById('r-muro');
     var plan = document.getElementById('r-plan');
-    if(muro && !datos.email){ muro.hidden = false; if(plan) plan.hidden = true; }
+    if(muro && !datos.email){
+      muro.hidden = false;
+      if(plan) plan.classList.add('borroso');
+    }
     pintarTestimonios(v);
     registrar(v);
     document.getElementById('r-titulo').textContent = t.titulo;
@@ -1589,20 +1614,16 @@ footer a{color:var(--gris)}
 
   // ----- Paso final: edad, email y WhatsApp, con el plan al otro lado -----
   document.getElementById('btn-datos').addEventListener('click', function(){
-    var pref   = document.getElementById('f-pref').value;
-    var tel    = document.getElementById('f-tel').value.replace(/[^0-9]/g,'');
-    var ok     = document.getElementById('f-ok').checked;
-    var email  = document.getElementById('f-email').value.trim().toLowerCase();
-
-    var edad = parseInt(document.getElementById('f-edad').value, 10);
+    var email = document.getElementById('f-email').value.trim().toLowerCase();
+    var pref  = document.getElementById('f-pref').value;
+    var tel   = document.getElementById('f-tel').value.replace(/[^0-9]/g,'');
+    var edad  = parseInt(document.getElementById('f-edad').value, 10);
     TRAMO = tramoDeEdad(edad);
     var v0 = marcar('c-edad', isNaN(edad) || edad < 8 || edad > 99);
     var ve = marcar('c-email', !emailValido(email));
     var v2 = marcar('c-tel', tel.length < 6 || tel.length > 15);
-    var v3 = marcar('c-ok', !ok);
-    if(!(v0 && ve && v2 && v3)){
-      evento('form_error', {donde:'final',
-        campo: (!v0 ? 'edad' : (!ve ? 'email' : (!v2 ? 'telefono' : 'consentimiento')))});
+    if(!(v0 && ve && v2)){
+      evento('form_error', {donde:'final', campo: (!v0 ? 'edad' : (!ve ? 'email' : 'telefono'))});
       return;
     }
 
@@ -1619,8 +1640,7 @@ footer a{color:var(--gris)}
         tramo:  TRAMO,
         valor:  r[6] || ''
       });
-      datos.telefono = ''; datos.email = ''; datos.edad = null;
-      // Menor sin capital -> pantalla de "no es tu momento" con la formacion gratis
+      datos.email = ''; datos.telefono = ''; datos.edad = null;
       if(porEdad && MODO_DESCARTE === 'O') ver('menor'); else irANoMomento();
       return;
     }
@@ -1647,12 +1667,8 @@ footer a{color:var(--gris)}
     var muro = document.getElementById('r-muro');
     var plan = document.getElementById('r-plan');
     if(muro) muro.hidden = true;
-    if(plan) plan.hidden = false;
-    var kicker = document.querySelector('#p-resultado .kicker');
-    if(kicker) kicker.textContent = datos.nombre ? ('Tu camino, ' + pila()) : 'Tu camino';
-    var pt = document.getElementById('r-plan-tit');
-    if(pt) pt.textContent = datos.nombre ? (pila() + ', tus primeros 30 días') : 'Tus primeros 30 días';
-    if(plan) plan.scrollIntoView({behavior:'smooth', block:'start'});
+    if(plan) plan.classList.remove('borroso');
+    irAFinal();
   }
 
   // limpiar el aviso en cuanto corrigen, y avisar de que han empezado a rellenar
@@ -1663,9 +1679,6 @@ footer a{color:var(--gris)}
       el.closest('.campo').classList.remove('mal');
       if(!FORM_TOCADO){ FORM_TOCADO = true; evento('form_inicio'); }
     });
-  });
-  document.getElementById('f-ok').addEventListener('change', function(){
-    document.getElementById('c-ok').classList.remove('mal');
   });
 
   // ===== GUARDAR EL LEAD (al pasar el optin) =====
@@ -1854,7 +1867,7 @@ footer a{color:var(--gris)}
         ['Dejan sus datos', ev.optin || 0, pct(ev.optin || 0, visitas)],
         ['Reciben el plan', (ev.recibe_plan || 0) + (ev.pide_dm || 0), pct((ev.recibe_plan || 0) + (ev.pide_dm || 0), visitas)],
         ['Van a Calendly', ev.a_calendly || 0, pct(ev.a_calendly || 0, visitas)],
-        ['Leads guardados', LEADS.length, null]
+        ['Leads guardados', LEADS.filter(function(l){ return !l.es_ruido; }).length, null]
       ];
       var ck = document.getElementById('panel-kpis');
       ck.innerHTML = '';
@@ -1875,7 +1888,6 @@ footer a{color:var(--gris)}
         [ETIQUETAS.resultado, ev.resultado || 0, {t:'paso', v:'resultado'}],
         [ETIQUETAS.optin, ev.optin || 0, {t:'paso', v:'optin'}],
         [ETIQUETAS.recibe_plan, (ev.recibe_plan || 0) + (ev.pide_dm || 0), {t:'paso', v:'pide_dm'}],
-        [ETIQUETAS.descarga_pdf, ev.descarga_pdf || 0],
         [ETIQUETAS.a_calendly, ev.a_calendly || 0, {t:'paso', v:'a_calendly'}]
       ], visitas);
 
@@ -2521,8 +2533,12 @@ footer a{color:var(--gris)}
     cal.onclick = function(){ evento('a_calendly', {vertical: v, como: 'boton'}); };
 
     cargarPDF(PDF[v]);
+    document.getElementById('fin-plan-tit').textContent = pila() ? (pila() + ', tus primeros 30 días') : 'Tus primeros 30 días';
+    document.getElementById('fin-pasos').innerHTML = document.getElementById('r-pasos').innerHTML;
+    document.getElementById('fin-nota').textContent = document.getElementById('r-nota').textContent;
     pintarPruebas();
     ver('final');
+    window.scrollTo(0, 0);
 
     // cuenta atrás: al llegar a 0 se desbloquea "Entrar al proceso de selección"
     var caja = document.getElementById('cuenta');
@@ -2574,7 +2590,6 @@ footer a{color:var(--gris)}
     }, 1000);
   }
 
-  document.getElementById('btn-plan').addEventListener('click', irAFinal);
 })();
 </script>
 </body>
