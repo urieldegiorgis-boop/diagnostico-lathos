@@ -130,6 +130,10 @@ body{
 }
 .filtro:hover{border-color:var(--azul);color:var(--azul)}
 .filtro.on{background:var(--negro);border-color:var(--negro);color:var(--blanco)}
+.fechas-caja{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:14px 0 4px}
+.fechas-caja label{display:flex;flex-direction:column;gap:6px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
+.fechas-caja input{font-family:inherit;font-size:14px;font-weight:600;color:var(--tinta);background:var(--blanco);border:1.5px solid var(--linea);border-radius:10px;padding:9px 11px}
+.fechas-caja input:focus{outline:0;border-color:var(--azul)}
 .chip-est{
   display:inline-block;font-size:11px;font-weight:800;border-radius:999px;
   padding:5px 10px;white-space:nowrap;
@@ -454,7 +458,6 @@ h1 em{font-style:normal;color:var(--azul);}
 .web-btn:hover{background:var(--azul);border-color:var(--azul);transform:translateY(-1px)}
 .web-btn:focus-visible{outline:3px solid var(--azul-claro);outline-offset:2px}
 .mas-test:focus-visible{outline:3px solid var(--azul-claro);outline-offset:2px}
-}
 
 /* ---------- preguntas ---------- */
 #p-1,#p-2,#p-3,#p-4,#p-5,#p-menor{text-align:center}
@@ -814,6 +817,16 @@ footer a{color:var(--gris)}
           <button class="filtro" data-f="pidio">Recibió el plan</button>
           <button class="filtro" data-f="proceso">Entró al proceso</button>
           <button class="filtro" data-f="sinasignar">Sin asignar</button>
+        </div>
+        <div class="filtros" id="leads-pais">
+          <button class="filtro on" data-p="todos">Todos los países</button>
+          <button class="filtro" data-p="es">España (+34)</button>
+          <button class="filtro" data-p="otros">Otros países</button>
+        </div>
+        <div class="fechas-caja">
+          <label>Desde <input type="date" id="f-desde"></label>
+          <label>Hasta <input type="date" id="f-hasta"></label>
+          <button type="button" class="mini" id="f-limpiar">Limpiar fechas</button>
         </div>
         <h5>Listado</h5>
         <div class="tabla-caja"><table class="tablita" id="panel-tabla"></table></div>
@@ -1992,8 +2005,28 @@ footer a{color:var(--gris)}
       return true;
     }
 
+    // ----- filtros de país (+34 / resto) y de fechas -----
+    var PAIS = 'todos', DESDE = '', HASTA = '';
+
+    function esEspana(l){
+      var t = String(l.telefono || '').replace(/[^0-9+]/g, '');
+      return t.indexOf('+34') === 0 || t.indexOf('0034') === 0;
+    }
+    function pasaPais(l){
+      if(PAIS === 'es') return esEspana(l);
+      if(PAIS === 'otros') return !esEspana(l);
+      return true;
+    }
+    function pasaFechas(l){
+      if(!DESDE && !HASTA) return true;
+      var d = new Date(l.creado_en);
+      if(DESDE && d < new Date(DESDE + 'T00:00:00')) return false;
+      if(HASTA && d > new Date(HASTA + 'T23:59:59.999')) return false;
+      return true;
+    }
+
     function enSegmento(){
-      return LEADS.filter(function(l){ return coincide(l, SEG); });
+      return LEADS.filter(function(l){ return coincide(l, SEG) && pasaPais(l) && pasaFechas(l); });
     }
 
     function rotuloSeg(s){
@@ -2232,13 +2265,30 @@ footer a{color:var(--gris)}
     });
 
     // ----- filtros -----
-    document.querySelectorAll('.filtro').forEach(function(b){
+    document.querySelectorAll('#leads-filtros .filtro').forEach(function(b){
       b.addEventListener('click', function(){
-        document.querySelectorAll('.filtro').forEach(function(x){ x.classList.remove('on'); });
+        document.querySelectorAll('#leads-filtros .filtro').forEach(function(x){ x.classList.remove('on'); });
         this.classList.add('on');
         FILTRO = this.dataset.f;
         pintarLeads();
       });
+    });
+
+    document.querySelectorAll('#leads-pais .filtro').forEach(function(b){
+      b.addEventListener('click', function(){
+        document.querySelectorAll('#leads-pais .filtro').forEach(function(x){ x.classList.remove('on'); });
+        this.classList.add('on');
+        PAIS = this.dataset.p;
+        pintarLeads();
+      });
+    });
+    document.getElementById('f-desde').addEventListener('change', function(){ DESDE = this.value; pintarLeads(); });
+    document.getElementById('f-hasta').addEventListener('change', function(){ HASTA = this.value; pintarLeads(); });
+    document.getElementById('f-limpiar').addEventListener('click', function(){
+      DESDE = ''; HASTA = '';
+      document.getElementById('f-desde').value = '';
+      document.getElementById('f-hasta').value = '';
+      pintarLeads();
     });
 
     // ----- pestañas -----
